@@ -1,6 +1,16 @@
 ---
 name: review-change
 description: Review a proposed change using project evidence and focused deterministic checks.
+metadata:
+    skill-organizer:
+        original-name: review-change
+        source-relative-path: review-change
+        disabled: false
+        risk-score: 0
+        risk-evaluated-at: ""
+        risk-evaluator: ""
+        risk-reason: ""
+        risk-source-hash: ""
 ---
 
 # Review a change

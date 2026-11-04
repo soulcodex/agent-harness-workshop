@@ -8,7 +8,7 @@ a second source of portable policy.
 - `harness/AGENTS.md`
 - Relevant files under `harness/guidance/`
 - `harness/skills/manifest.yaml`
-- Future canonical definitions under `harness/agents/`
+- `harness/skills/scopes/workshop/.organized/` after synchronization
 
 ## Output
 
@@ -20,7 +20,12 @@ The host-specific files, links, or installation steps required by OpenCode, Code
 2. Keep project-specific instructions in the target project.
 3. Document unsupported portable capabilities instead of silently dropping them.
 4. Prove the adapter points to the expected portable sources.
-5. Validate one chosen host during the workshop.
+5. Make activation explicit and reversible. Never overwrite an existing host configuration or
+   global skills profile by default.
 
-The future generator and its expected-output tests belong here. They are not part of the initial
-scaffold.
+## Workshop scope
+
+`opencode/` is the complete reference adapter used in the workshop. Codex and Pi use the same
+portable inputs, but their adapters are follow-on exercises. A future host-config generator may
+live here only after the manual adapter has revealed a repeated, verifiable transformation worth
+automating.

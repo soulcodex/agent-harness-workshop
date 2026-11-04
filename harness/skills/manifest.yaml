@@ -1,5 +1,13 @@
 profile: workshop
+tool:
+  name: skill-organizer
+  version: 1.4.1
+  purpose: Synchronize a checked-in source scope into a local runtime skill tree.
+scope:
+  source: scopes/workshop/skills
+  organizer_config: scopes/workshop/.skill-organizer.yml
+  generated_target: scopes/workshop/.organized
 skills:
   - id: review-change
-    source: shared/review-change/SKILL.md
+    source: scopes/workshop/skills/review-change/SKILL.md
     purpose: Review a proposed change against project evidence and deterministic checks.
