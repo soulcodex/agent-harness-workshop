@@ -13,6 +13,8 @@ authoritative for its architecture, commands, tooling, style, tests, and deliver
 - Prefer the smallest change that solves the verified problem.
 - Treat deterministic checks as evidence about their narrow contract. They do not prove broader
   behavior by themselves.
+- Treat warnings, especially deprecations, as evidence that needs an explicit disposition. Do not
+  suppress or silently accept them.
 
 ## Lazy context router
 

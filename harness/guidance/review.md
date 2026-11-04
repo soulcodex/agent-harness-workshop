@@ -9,3 +9,6 @@ look thorough.
 
 Check that deterministic evidence supports only the claim it can prove. Passing formatting or type
 checks do not prove a business invariant without a focused test.
+
+Check command output for warnings. Confirm each warning is either resolved in the change or has a
+visible, pragmatic follow-up proposal. Do not accept a blanket warning suppression as a fix.
