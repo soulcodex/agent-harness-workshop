@@ -23,16 +23,21 @@ OpenCode | Codex | Pi
 ```text
 .
 ├── AGENTS.md
+├── WORKSHOP_TASKS.md
 └── harness/
-    ├── AGENTS.md
     ├── adapters/
     │   ├── README.md
     │   └── opencode/
-    │       └── README.md
+    │       ├── README.md
+    │       └── activate.sh
     ├── guidance/
     │   ├── evidence.md
     │   ├── python.md
     │   └── review.md
+    ├── roles/
+    │   └── README.md
+    ├── rules/
+    │   └── transversal.md
     └── skills/
         ├── manifest.yaml
         └── scopes/
@@ -64,15 +69,15 @@ describes an explicit, reversible activation after inspecting any existing globa
 
 ## Attendee path
 
-1. Read the portable router and the project repository's instructions.
-2. Select OpenCode, Codex, or Pi.
-3. Configure one thin adapter without copying project facts into the kernel.
-4. Use the harness to inspect and change Karma API.
-5. Run the project’s deterministic checks and review the evidence.
-6. Record one improvement prompted by a rejected or incomplete change.
+Follow [the workshop tasks](WORKSHOP_TASKS.md) in order. They start with a factual baseline, build
+the portable policy in visible layers, configure one host, and use the result to change Karma API.
+
+The root `AGENTS.md` is the only portable policy entry point. Guidance, rules, roles, skills, and
+adapters are routed from that file. Do not create a second `AGENTS.md` under `harness/`.
 
 ## Current scope
 
-The canonical router, focused guidance, and managed reusable review skill are present. The complete
-OpenCode adapter is the reference. Codex and Pi adapters are follow-on exercises that use the same
-portable inputs without pretending that their host mechanisms are identical.
+The canonical router, focused guidance, transversal rule, role contracts, and managed reusable
+review skill are present. The complete OpenCode adapter is the reference. Codex and Pi adapters
+are follow-on exercises that use the same portable inputs without pretending that their host
+mechanisms are identical.
