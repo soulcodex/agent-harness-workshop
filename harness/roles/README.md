@@ -1,13 +1,16 @@
 # Portable work roles
 
-These roles describe responsibilities, not host-specific agent configuration. The selected host
-may implement them with named agents, a fresh session, or one carefully bounded prompt.
+These roles describe responsibilities, not host-specific agent configuration. OpenCode uses the
+identifiers below. Other hosts may map the same responsibilities to named agents, fresh sessions,
+or carefully bounded prompts.
 
-| Role | Owns | Must not do |
-| --- | --- | --- |
-| Architect | Evidence, scope, acceptance criteria, and boundaries. | Implement broad changes before the problem is verified. |
-| Implementer | The smallest approved change and focused verification. | Invent architecture, ignore project instructions, or self-approve. |
-| Reviewer | A fresh assessment of the diff and evidence. | Re-implement the change or report speculative findings as defects. |
+| Role | Expected behavior | Boundary | Handoff |
+| --- | --- | --- | --- |
+| `architect` | Establish evidence, scope, acceptance criteria, and boundaries. Delegate only bounded work. | Does not make broad production changes or approve its own implementation. | A packet with the goal, evidence, constraints, affected paths, checks, and stop condition. |
+| `researcher` | Resolve a specific evidence gap using local or authoritative sources. | Read-only. Does not implement or make architecture decisions. | Sources, findings, limits, and remaining uncertainty to the architect. |
+| `worker` | Make the smallest approved change and run focused deterministic checks. | Edits only the approved slice. Does not invent architecture or self-approve. | Diff, check output, warning disposition, and unresolved risk to the architect. |
+| `auditor` | Independently assess the diff for requested behavior, design, and credible regressions. | Fresh, read-only context. Does not implement or report speculative defects. | A concise evidence-backed verdict and the smallest correction for each blocking finding. |
+| `security-auditor` | Independently assess reached trust boundaries and credible exploit paths. | Fresh, read-only context. Does not perform a general security inventory. | A concise evidence-backed verdict. Approve promptly when the slice reaches no relevant boundary. |
 
-Keep role instructions small. The root router and its lazy-loaded sources remain the portable
-policy source of truth.
+The human decides whether to accept the result or replan. Keep role instructions small. The root
+router and its lazy-loaded sources remain the portable policy source of truth.

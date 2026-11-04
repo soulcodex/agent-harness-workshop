@@ -44,16 +44,30 @@ real boundary to protect.
 **Accept when:** the HTTP edge is not the only owner of the Karma decision, and tests demonstrate a
 business invariant rather than a coverage number.
 
-## 4. Assign work roles
+## 4. Configure work roles in OpenCode
 
 **Problem:** one agent can plan, implement, and approve an unsupported change without fresh
 scrutiny.
 
-Use `harness/roles/README.md` to assign architect, implementer, and reviewer responsibilities. A
-host may map them to named agents, separate sessions, or bounded prompts.
+At the OpenCode configuration level, define these five named agents. For each one, declare the
+prompt, behavior, permissions, limits, and handoff requirements. Use
+`harness/roles/README.md` as the portable source for those responsibilities. Do not duplicate or
+contradict it.
 
-**Accept when:** the reviewer receives the diff and verification evidence from a fresh context, and
-the implementer does not approve its own work.
+| Agent | Expected behavior | Boundary and handoff |
+| --- | --- | --- |
+| `architect` | Verify the problem, set scope and acceptance criteria, then delegate bounded work. | Does not approve its own implementation. Gives each delegate the goal, evidence, constraints, and stop condition. |
+| `researcher` | Close a specific evidence gap with local or authoritative sources. | Read-only. Returns sources, findings, and uncertainty to the architect. |
+| `worker` | Make the smallest approved change and run the relevant deterministic checks. | Edits only the approved slice. Returns the diff, check output, and warning disposition. It does not self-approve. |
+| `auditor` | Review the diff from a fresh context for requested behavior, design, and credible regressions. | Read-only. Receives the diff and verification evidence. Returns a concise verdict with evidence-backed findings only. |
+| `security-auditor` | Review reached trust boundaries and credible exploit paths from a fresh context. | Read-only. Approves promptly when no relevant boundary is reached. Returns a concise verdict with evidence-backed findings only. |
+
+The human is not a sixth agent. The human accepts the result or asks for a replan after the review
+verdicts are available.
+
+**Accept when:** the OpenCode configuration names all five agents and defines their scopes and
+limits. The worker cannot approve its own work. Both auditors receive the diff and verification
+evidence from a fresh context. The final decision remains with the human.
 
 ## 5. Manage the review skill
 
