@@ -1,0 +1,14 @@
+---
+name: review-change
+description: Review a proposed change using project evidence and focused deterministic checks.
+---
+
+# Review a change
+
+1. Read the target repository's instructions and the smallest relevant context.
+2. Inspect the diff and identify the behavior or boundary it changes.
+3. Run or inspect the deterministic checks that apply to that behavior.
+4. Report verified findings before uncertain concerns.
+5. Stop after the decision, evidence, and credible findings are clear.
+
+Do not approve a change solely because it looks plausible or because a broad check passed.

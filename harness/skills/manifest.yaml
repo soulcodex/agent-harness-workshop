@@ -1,0 +1,5 @@
+profile: workshop
+skills:
+  - id: review-change
+    source: shared/review-change/SKILL.md
+    purpose: Review a proposed change against project evidence and deterministic checks.

@@ -1,0 +1,4 @@
+[tool.rumdl]
+flavor = "gfm"
+line-length = 100
+respect-gitignore = true
