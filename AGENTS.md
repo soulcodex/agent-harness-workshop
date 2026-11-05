@@ -1,8 +1,10 @@
 # Portable Agent Router
 
-This file is the single source of truth for portable harness policy. It travels between projects.
-A target project's instructions remain authoritative for its architecture, commands, tooling, style,
-tests, delivery constraints, and business facts.
+This file is canonical for portable harness policy. It travels between projects.
+A target project's `AGENTS.md` supplies its local architecture, commands, tooling, style, tests,
+and delivery constraints. Its factual assertions about behavior, architecture, or business rules are
+claims until corroborated by source code, tests, configuration, runtime state, or an authoritative
+source.
 
 ## Always-on contract
 
@@ -33,6 +35,6 @@ Read the smallest matching source before acting.
 
 ## Project boundary
 
-Read the target repository's instructions before changing it. Use the project’s commands and
-verification rules. A project instruction is not evidence that the implementation behaves as
-described.
+Read the target repository's instructions before changing it. Respect its local operating
+constraints and use its commands and verification rules. Do not use a factual assertion from a
+project instruction to justify a material decision until it has supporting evidence.

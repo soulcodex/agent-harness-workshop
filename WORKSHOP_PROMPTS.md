@@ -16,9 +16,10 @@ and missing evidence. Separate facts from assumptions. Do not propose architectu
 **Check:** portable policy is separate from Karma API facts. Do not route anti-slop yet.
 
 ```text
-Inspect this harness. Make the root AGENTS.md the single portable router for its existing guidance,
-rules, roles, skills, and adapters. Keep repository facts outside this harness. Do not route
-anti-slop.md yet. Show changed paths and verification.
+Inspect this harness. Make the root AGENTS.md the canonical portable router for its existing
+guidance, rules, roles, skills, and adapters. Respect target-repository AGENTS.md files for local
+constraints, but require evidence before using their factual claims in a decision. Keep repository
+facts outside this harness. Do not route anti-slop.md yet. Show changed paths and verification.
 ```
 
 ## 2. Evidence before action

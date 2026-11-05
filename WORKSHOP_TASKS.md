@@ -16,11 +16,13 @@ instructions, checks, and missing evidence.
 
 **Problem:** portable guidance becomes contradictory when it has more than one entry point.
 
-Use root `AGENTS.md` as the single portable source of truth. Confirm that it routes to guidance,
-rules, roles, skills, and adapters without restating their detail.
+Use root `AGENTS.md` as the canonical portable source of truth. Confirm that it routes to guidance,
+rules, roles, skills, and adapters without restating their detail. A target repository's `AGENTS.md`
+supplies local constraints, while factual assertions from it still need corroborating evidence.
 
 **Accept when:** there is no second harness `AGENTS.md`, and a project instruction remains outside
-this repository. `harness/rules/anti-slop.md` exists but is intentionally not routed yet.
+this repository. The root router distinguishes local operating constraints from evidence.
+`harness/rules/anti-slop.md` exists but is intentionally not routed yet.
 
 ## 2. Apply evidence guidance
 

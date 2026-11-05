@@ -75,8 +75,10 @@ Follow [the workshop tasks](WORKSHOP_TASKS.md) in order and copy prompts from
 [the prompt pack](WORKSHOP_PROMPTS.md) one at a time. They start with a factual baseline, build the
 portable policy in visible layers, configure one host, and use the result to change Karma API.
 
-The root `AGENTS.md` is the only portable policy entry point. Guidance, rules, roles, skills, and
-adapters are routed from that file. Do not create a second `AGENTS.md` under `harness/`.
+The root `AGENTS.md` is the canonical portable policy entry point. Guidance, rules, roles, skills,
+and adapters are routed from that file. A target repository's `AGENTS.md` supplies local operating
+constraints. Its factual claims still require corroboration before they justify a material decision.
+Do not create a second `AGENTS.md` under `harness/`.
 
 ## Current scope
 
