@@ -6,15 +6,15 @@ Karma API facts, application code, or a claim that all coding-agent hosts behave
 
 ## Workshop outcome
 
-Each attendee configures this harness for one chosen host, then uses it to make and verify a small
-Karma API change. The portable kernel stays canonical. Host adapters translate it for OpenCode or Pi.
+Each attendee assembles this harness for OpenCode, then uses it to make and verify a small Karma API
+change. The portable kernel stays canonical. The OpenCode adapter translates it for its host.
 
 ```text
 portable kernel
         ↓
-thin host adapter
+OpenCode adapter
         ↓
-OpenCode | Pi
+OpenCode
 ```
 
 ## Layout
@@ -62,9 +62,10 @@ harness/skills/build-profile.sh
 ```
 
 The builder resolves the portable relative paths required by the checked-in organizer configuration,
-removes its temporary config, and verifies the generated skill. The generated `.organized/`
-directory is ignored by Git. Do not point it at `~/.agents/skills` by default. The OpenCode adapter
-describes an explicit, reversible activation after inspecting any existing global profile.
+removes its temporary config, and verifies the generated skill and manifest. The generated
+`.organized/` directory is ignored by Git. The OpenCode adapter links it into
+`~/.config/opencode/skills` during an explicit, reversible activation after inspecting existing
+targets.
 
 ## Attendee path
 
@@ -84,6 +85,6 @@ Do not create a second `AGENTS.md` under `harness/`.
 
 The canonical router, focused guidance, transversal rules, role contracts, and managed reusable
 review skill are present. `anti-slop.md` is deliberately not routed at first. Attendees activate it,
-restart their agent, and compare the same response before and after the route exists. The complete
-OpenCode is the complete reference adapter. Pi is a manual follow-on mapping that uses the same
-portable inputs without pretending that the hosts have identical mechanisms.
+restart their agent, and compare the same response before and after the route exists. OpenCode is
+the complete workshop adapter. The final exercise runs an evidence loop through the configured
+roles to prove the assembled harness on a real Karma API change.

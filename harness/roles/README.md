@@ -2,7 +2,6 @@
 
 Each role Markdown file is the canonical source for its short prompt and OpenCode description. The
 OpenCode profile maps the portable roles to host-specific agent identifiers, models, and permissions.
-Pi may map the same responsibilities to fresh sessions or carefully bounded prompts.
 
 | Role | Expected behavior | Boundary | Handoff |
 | --- | --- | --- | --- |

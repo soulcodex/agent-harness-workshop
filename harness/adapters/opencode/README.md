@@ -8,7 +8,9 @@ leaving target-project instructions and existing user configuration intact.
 | OpenCode location | Portable source | Purpose |
 | --- | --- | --- |
 | `~/.config/opencode/AGENTS.md` | Root `AGENTS.md` | Global portable router. |
-| `~/.agents/skills/` | `harness/skills/.organized/` | Managed reusable skills. |
+| `~/.config/opencode/guidance/` | `harness/guidance/` | Lazy-loaded engineering guidance. |
+| `~/.config/opencode/rules/` | `harness/rules/` | Lazy-loaded transversal rules. |
+| `~/.config/opencode/skills/` | `harness/skills/.organized/` | Managed reusable skills. |
 | Per-run `OPENCODE_CONFIG` | `.generated/opencode.jsonc` | Generated five-role OpenCode overlay. |
 
 `harness/roles/*.md` owns the prompt and description for each portable role. This adapter's
@@ -42,7 +44,9 @@ The script builds the managed skill profile, then creates these symlinks:
 
 ```text
 ~/.config/opencode/AGENTS.md -> <harness>/AGENTS.md
-~/.agents/skills -> <harness>/harness/skills/.organized
+~/.config/opencode/guidance -> <harness>/harness/guidance
+~/.config/opencode/rules -> <harness>/harness/rules
+~/.config/opencode/skills -> <harness>/harness/skills/.organized
 ```
 
 It is idempotent for those exact links. If either target already exists and does not resolve to the
@@ -70,4 +74,3 @@ merge portable policy into an attendee's current OpenCode setup.
 
 - Custom OpenCode commands, plugins, provider setup, MCP servers, or general permission policy.
 - Target-project facts or deterministic commands.
-- A claim that Pi has an identical installation mechanism or configured-subagent model.

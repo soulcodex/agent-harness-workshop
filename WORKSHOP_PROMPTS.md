@@ -46,7 +46,7 @@ why, and how to validate it.
 **Check:** the router gains one route. The rule content is not copied into AGENTS.md.
 
 ```text
-Add a lazy-loading route for harness/rules/anti-slop.md when writing plans, reviews, handoffs,
+Add a lazy-loading route for rules/anti-slop.md when writing plans, reviews, handoffs,
 documentation, commit messages, or PR text. Keep the detailed rule outside AGENTS.md. Show the
 smallest change and how a fresh session will load it.
 ```
@@ -85,14 +85,14 @@ SKILL.md resolves to the checked-in source. Do not upgrade or add skills.
 
 ## 8. Activate the OpenCode reference adapter
 
-**Check:** only the portable router and managed skills become global symlinks. The role overlay is
-loaded only by the workshop launcher.
+**Check:** the portable router, guidance, rules, and managed skills become OpenCode configuration
+symlinks. The role overlay is loaded only by the workshop launcher.
 
 ```text
-Inspect the OpenCode adapter before activation. Run its activation only if both target paths are
-available. Then start OpenCode through harness/adapters/opencode/run.sh so OPENCODE_CONFIG loads the
-generated role overlay for this process. Do not overwrite, merge, or symlink a global opencode.jsonc.
-Return the links, generated path, and fresh-session check.
+Inspect the OpenCode adapter before activation. Run its activation only if all target paths are
+available. Then start OpenCode through harness/adapters/opencode/run.sh so OPENCODE_CONFIG loads
+the generated role overlay for this process. Do not overwrite, merge, or symlink a global
+opencode.jsonc. Return the links, generated path, and fresh-session check.
 ```
 
 ## 9. Business tests
@@ -122,13 +122,15 @@ Review the current Karma diff from a fresh, read-only context. Check requested b
 and credible regressions. Return only evidence-backed findings or an approval.
 ```
 
-## 12. Map the portable layer to Pi
+## 12. Complete the evidence loop
 
-**Check:** the mapping names Pi's agent-directory path, reload step, and the capability it cannot
-claim to match from OpenCode.
+**Check:** architect, worker, and independent reviewers have separate responsibilities and each
+verdict cites evidence.
 
 ```text
-Inspect the Pi configuration seam for this harness. Propose a manual mapping for the portable
-AGENTS.md and managed skills under Pi's agent directory, then name the reload step. Do not claim
-that Pi has OpenCode-equivalent configured subagents. Do not overwrite existing Pi configuration.
+Use the configured OpenCode roles to complete an evidence loop for the current Karma API change.
+The architect must define the acceptance criteria, affected boundary, deterministic checks, and stop
+condition. The worker implements only that bounded slice. The auditor reviews the resulting diff
+from fresh context. The security auditor reviews the reached API trust boundary against applicable
+OWASP controls. Return the evidence, verdicts, and whether the human should accept or replan.
 ```

@@ -25,16 +25,20 @@ Read the smallest matching source before acting.
 
 | Source | Read when | What it governs |
 | --- | --- | --- |
-| `harness/guidance/evidence.md` | Making a material claim, plan, or recommendation. | Evidence, uncertainty, and stop conditions. |
-| `harness/guidance/python.md` | Changing or reviewing Python code. | Typed boundaries, domain pressure, and tests. |
-| `harness/guidance/review.md` | Reviewing a change, diff, or verification result. | Independent review and ranked findings. |
-| `harness/rules/transversal.md` | Changing architecture, persistence, APIs, or a cross-cutting concern. | Ownership, boundaries, and deterministic accountability. |
-| `harness/roles/README.md` then the selected role file | Selecting or defining a work role. | Portable role responsibility, handoff, and host-ready prompt. |
-| `harness/skills/manifest.yaml` | Selecting a reusable workflow. | Available skills and their purpose. |
-| `harness/adapters/README.md` | Installing or changing a host adapter. | Host translation and portability limits. |
+| `guidance/evidence.md` | Making a material claim, plan, or recommendation. | Evidence, uncertainty, and stop conditions. |
+| `guidance/python.md` | Changing or reviewing Python code. | Typed boundaries, domain pressure, and tests. |
+| `guidance/review.md` | Reviewing a change, diff, or verification result. | Independent review and ranked findings. |
+| `rules/transversal.md` | Changing architecture, persistence, APIs, or a cross-cutting concern. | Ownership, boundaries, and deterministic accountability. |
+| `skills/manifest.yaml` | Selecting a reusable workflow. | Available skills and their purpose. |
 
 ## Project boundary
 
 Read the target repository's instructions before changing it. Respect its local operating
 constraints and use its commands and verification rules. Do not use a factual assertion from a
 project instruction to justify a material decision until it has supporting evidence.
+
+## Installed layout
+
+The OpenCode adapter installs this router with `guidance/`, `rules/`, and `skills/` alongside it in
+the OpenCode configuration directory. Role cards and adapter sources are installation-time inputs:
+the generated OpenCode overlay receives role prompts from their canonical Markdown files.

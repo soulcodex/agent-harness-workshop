@@ -24,4 +24,7 @@ telemetry:
 EOF
 
 DO_NOT_TRACK=1 skill-organizer sync --config "${runtime_config}"
+rm -f "${target_dir}/manifest.yaml"
+ln -s "../manifest.yaml" "${target_dir}/manifest.yaml"
 test -f "${target_dir}/review-change/SKILL.md"
+test -f "${target_dir}/manifest.yaml"

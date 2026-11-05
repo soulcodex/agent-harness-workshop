@@ -62,7 +62,7 @@ project facts.
 | `researcher` | `researcher` | Close one evidence gap from a read-only context. |
 | `worker` | `worker` | Make the smallest approved change and run deterministic checks. |
 | `auditor` | `auditor` | Review the supplied diff and verification evidence from a fresh, read-only context. |
-| `security-auditor` | `security-auditor` | Inspect reached trust paths and credible exploit routes from a fresh, read-only context. |
+| `security-auditor` | `security-auditor` | Inspect reached trust paths against applicable OWASP controls from a fresh, read-only context. |
 
 The human is not a sixth agent. The human accepts the result or asks for a replan after review.
 
@@ -76,20 +76,22 @@ inside `harness/adapters/opencode/.generated/`.
 
 Run prompt 7 to build the managed `review-change` skill with `skill-organizer`.
 
-**Accept when:** `harness/skills/.organized/review-change/SKILL.md` resolves to the checked-in source
-and Git does not track the generated tree. Do not upgrade skills during the workshop.
+**Accept when:** `harness/skills/.organized/review-change/SKILL.md` and its `manifest.yaml` resolve
+to checked-in sources, and Git does not track the generated tree. Do not upgrade skills during the
+workshop.
 
 ## 6. Activate the OpenCode reference adapter
 
 **Problem:** copying policy into a global OpenCode file creates a second source of truth and risky
 merges.
 
-Run prompt 8. The adapter creates global symlinks only for the root router and managed skills. The
-launcher generates and passes an OpenCode overlay through `OPENCODE_CONFIG` for that one process.
+Run prompt 8. The adapter creates OpenCode configuration symlinks for the root router, guidance,
+rules, and managed skills. The launcher generates and passes an OpenCode overlay through
+`OPENCODE_CONFIG` for that one process.
 
-**Accept when:** both OpenCode targets are symlinks to this repository's root router and managed
-skill profile. The generated overlay remains in this repository. If either target is already occupied,
-stop rather than merge or overwrite it.
+**Accept when:** all four OpenCode targets are symlinks to this repository's root router, guidance,
+rules, and managed skill profile. The generated overlay remains in this repository. If any target is
+already occupied, stop rather than merge or overwrite it.
 
 ## 7. Apply transversal and Python rules
 
@@ -112,17 +114,19 @@ Run prompt 11 in a fresh reviewer context after the deterministic checks finish.
 **Accept when:** the result includes changed behavior, command evidence, warning disposition, and any
 unresolved risk. Record one harness refinement prompted by the review.
 
-## 9. Map the portable layer to Pi
+## 9. Complete the evidence loop
 
-**Problem:** portable policy does not make OpenCode and Pi equivalent products.
+**Problem:** a set of installed files does not prove that role boundaries, evidence, and independent
+review actually work together.
 
-Run prompt 12 as a documented, manual follow-on mapping. Pi's user agent directory has a separate
-configuration and reload lifecycle.
+Run prompt 12 after the Karma change exists. Use the configured OpenCode role loop: architect,
+worker, auditor, and security auditor. Keep the review contexts fresh and bounded by the supplied
+goal, diff, checks, affected boundary, and stop condition.
 
-**Accept when:** the attendee can name the Pi location that would receive the portable router and
-skills, the `/reload` step, and the OpenCode subagent behavior that is intentionally not claimed.
+**Accept when:** the final packet separates the architect's scope, worker's implementation evidence,
+auditor's code verdict, and security auditor's OWASP-backed verdict. The human can accept the
+change or request a replan from the evidence.
 
 ## Extensions after the core path
 
 - Add SQLite only after in-memory Karma behavior makes persistence a real boundary.
-- Automate a Pi adapter only after repeating a manual, verifiable mapping.

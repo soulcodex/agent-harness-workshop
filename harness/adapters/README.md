@@ -12,7 +12,7 @@ a second source of portable policy.
 
 ## Output
 
-The host-specific files, links, or installation steps required by OpenCode or Pi.
+The host-specific files, links, or installation steps required by OpenCode.
 
 ## Adapter contract
 
@@ -20,13 +20,12 @@ The host-specific files, links, or installation steps required by OpenCode or Pi
 2. Keep project-specific instructions in the target project.
 3. Document unsupported portable capabilities instead of silently dropping them.
 4. Prove the adapter points to the expected portable sources.
-5. Make activation explicit and reversible. Never overwrite an existing host configuration or
-   global skills profile by default.
+5. Make activation explicit and reversible. Never overwrite an existing host configuration by
+   default.
 
 ## Workshop scope
 
-`opencode/` is the complete reference adapter used in the workshop. It generates a per-run
-`opencode.jsonc` role overlay from host-specific adapter code, then passes it through
-`OPENCODE_CONFIG`. It never writes or merges an attendee's global config. Pi uses the same portable
-inputs through a manual follow-on mapping. Automate Pi only after that mapping proves a repeated,
-verifiable transformation worth owning.
+`opencode/` is the complete adapter used in the workshop. It links the portable router, guidance,
+rules, and managed skills into OpenCode's configuration directory. It also generates a per-run
+`opencode.jsonc` role overlay and passes it through `OPENCODE_CONFIG`. It never writes or merges an
+attendee's global configuration.
