@@ -23,6 +23,7 @@ OpenCode | Codex | Pi
 ```text
 .
 ├── AGENTS.md
+├── MODEL_ROLE_RECIPES.md
 ├── WORKSHOP_PROMPTS.md
 ├── WORKSHOP_TASKS.md
 └── harness/
@@ -74,6 +75,9 @@ describes an explicit, reversible activation after inspecting any existing globa
 Follow [the workshop tasks](WORKSHOP_TASKS.md) in order and copy prompts from
 [the prompt pack](WORKSHOP_PROMPTS.md) one at a time. They start with a factual baseline, build the
 portable policy in visible layers, configure one host, and use the result to change Karma API.
+
+[Role-model recipes](MODEL_ROLE_RECIPES.md) gives fact-checked starting points for a small role
+loop. Confirm availability, access, and effort settings in the chosen host before using one.
 
 The root `AGENTS.md` is the canonical portable policy entry point. Guidance, rules, roles, skills,
 and adapters are routed from that file. A target repository's `AGENTS.md` supplies local operating
