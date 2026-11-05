@@ -8,15 +8,15 @@ Pi remains a deferred adapter iteration and is not part of the attendee exercise
 
 ## Source ownership
 
-| Artifact | Canonical source | Consumer |
-| --- | --- | --- |
-| Repository operation | Root `AGENTS.md` | Contributors working on this harness. |
-| Portable router | `harness/router/AGENTS.md` | OpenCode global instruction loading. |
-| Guidance and rules | `harness/guidance/`, `harness/rules/` | The portable router. |
-| Role prompts | `harness/roles/*.md` | OpenCode overlay generator. |
-| Host configuration | `harness/adapters/opencode/profile.yaml` | OpenCode overlay generator. |
-| Managed skills | `harness/skills/source/` | Generated flat skills profile. |
-| Adapter implementation | `harness/adapters/opencode/` | OpenCode installation and overlay generator. |
+| Artifact               | Canonical source                         | Consumer                              |
+| ---------------------- | ---------------------------------------- | ------------------------------------- |
+| Repository operation   | Root `AGENTS.md`                         | Contributors working on this harness. |
+| Portable router        | `harness/router/AGENTS.md`               | OpenCode global instruction loading.  |
+| Guidance and rules     | `harness/guidance/`, `harness/rules/`    | The portable router.                  |
+| Role prompts           | `harness/roles/*.md`                     | OpenCode overlay generator.           |
+| Host configuration     | `harness/adapters/opencode/profile.yaml` | OpenCode overlay generator.           |
+| Managed skills         | `harness/skills/source/`                 | Generated flat skills profile.        |
+| Adapter implementation | `harness/adapters/opencode/`             | OpenCode installation and overlay generator. |
 
 Do not copy portable policy into a target project or an OpenCode-owned configuration file.
 
@@ -25,12 +25,12 @@ Do not copy portable policy into a target project or an OpenCode-owned configura
 `harness/adapters/opencode/activate.sh` creates only these symlinks after every target passes its
 availability check:
 
-| OpenCode target | Portable source |
-| --- | --- |
-| `~/.config/opencode/AGENTS.md` | `harness/router/AGENTS.md` |
-| `~/.config/opencode/guidance` | `harness/guidance` |
-| `~/.config/opencode/rules` | `harness/rules` |
-| `~/.config/opencode/skills` | `harness/skills/.organized` |
+| OpenCode target                | Portable source                    |
+| ------------------------------ | ---------------------------------- |
+| `~/.config/opencode/AGENTS.md` | `harness/router/AGENTS.md`         |
+| `~/.config/opencode/guidance`  | `harness/guidance`                 |
+| `~/.config/opencode/rules`     | `harness/rules`                    |
+| `~/.config/opencode/skills`    | `harness/skills/.organized`        |
 
 The generated `opencode.jsonc` remains under the adapter directory. It is not activated by this
 workshop because OpenCode does not discover arbitrary launcher scripts. Activation never merges,
@@ -48,10 +48,10 @@ The architect is the only `agent`. Researcher, worker, auditor, and security aud
 
 ## Generated artifacts
 
-| Artifact | Generator | Tracking |
-| --- | --- | --- |
-| `harness/skills/.organized/` | `harness/skills/build-profile.sh` | Ignored. |
-| `harness/adapters/opencode/.generated/opencode.jsonc` | `generate_config.py` | Ignored. |
+| Artifact                                              | Generator                         | Tracking |
+| ----------------------------------------------------- | --------------------------------- | -------- |
+| `harness/skills/.organized/`                          | `harness/skills/build-profile.sh` | Ignored. |
+| `harness/adapters/opencode/.generated/opencode.jsonc` | `generate_config.py`              | Ignored. |
 
 Generated files are disposable views. Edit their checked-in sources only.
 
@@ -61,9 +61,3 @@ Edit this file only when a source owner, host contract, generated-artifact contr
 or deferred-adapter boundary changes. The same change must contain evidence for the new decision,
 its affected consumers, validation, and a safe rollback or removal path. Copy changes, ordinary
 workshop instructions, and implementation details belong elsewhere.
-
-## Deferred Pi adapter
-
-Pi remains an explicit extension. Add `harness/adapters/pi/` only after a manual mapping is repeated
-and verified. That work must document Pi's instruction and skill locations, reload lifecycle, and
-the OpenCode configured-subagent behavior that Pi cannot claim to reproduce.
