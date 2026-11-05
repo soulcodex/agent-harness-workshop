@@ -1,5 +1,6 @@
 ---
 role: auditor
+agent_type: subagent
 description: Independently reviews a supplied diff and its verification evidence from fresh context.
 ---
 

@@ -2,7 +2,6 @@ agents:
   - role: architect
     name: architect
     model: openai/gpt-5.6-terra
-    mode: primary
     temperature: 0.2
     variant: xhigh
     permissions:
@@ -34,7 +33,6 @@ agents:
   - role: researcher
     name: researcher
     model: opencode-go/deepseek-v4.1-flash
-    mode: subagent
     temperature: 0.1
     variant: low
     permissions:
@@ -53,7 +51,6 @@ agents:
   - role: worker
     name: worker
     model: opencode-go/deepseek-v4.1-flash
-    mode: subagent
     temperature: 0.15
     variant: high
     permissions:
@@ -88,7 +85,6 @@ agents:
   - role: auditor
     name: auditor
     model: openai/gpt-5.6-luna
-    mode: subagent
     temperature: 0.1
     variant: medium
     permissions:
@@ -115,7 +111,6 @@ agents:
   - role: security-auditor
     name: security-auditor
     model: openai/gpt-5.6-terra
-    mode: subagent
     temperature: 0.1
     variant: high
     permissions:

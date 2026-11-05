@@ -16,10 +16,10 @@ and missing evidence. Separate facts from assumptions. Do not propose architectu
 **Check:** portable policy is separate from Karma API facts. Anti-slop is not routed yet.
 
 ```text
-Inspect this harness root AGENTS.md. Confirm it is the only portable router for its existing
-guidance, rules, roles, skills, and adapters. Confirm target-repository AGENTS.md files provide
-local constraints while factual claims still need evidence. Keep repository facts outside this
-harness. Do not route anti-slop.md. Report paths and any gap only.
+Inspect harness/router/AGENTS.md and root AGENTS.md. Confirm the router is the only installable
+portable policy entry point and root AGENTS.md governs only this harness repository. Confirm
+target-repository AGENTS.md files provide local constraints while factual claims still need evidence.
+Keep repository facts outside this harness. Do not route anti-slop.md. Report paths and any gap only.
 ```
 
 ## 2. Evidence before action
@@ -46,7 +46,8 @@ why, and how to validate it.
 **Check:** the router gains one route. The rule content is not copied into AGENTS.md.
 
 ```text
-Add a lazy-loading route for rules/anti-slop.md when writing plans, reviews, handoffs,
+Add a lazy-loading route to harness/router/AGENTS.md for rules/anti-slop.md when writing plans,
+reviews, handoffs,
 documentation, commit messages, or PR text. Keep the detailed rule outside AGENTS.md. Show the
 smallest change and how a fresh session will load it.
 ```
@@ -85,14 +86,14 @@ SKILL.md resolves to the checked-in source. Do not upgrade or add skills.
 
 ## 8. Activate the OpenCode reference adapter
 
-**Check:** the portable router, guidance, rules, and managed skills become OpenCode configuration
-symlinks. The role overlay is loaded only by the workshop launcher.
+**Check:** the portable router, guidance, rules, managed skills, and launcher become OpenCode
+configuration symlinks. The role overlay is loaded only by the linked launcher.
 
 ```text
-Inspect the OpenCode adapter before activation. Run its activation only if all target paths are
-available. Then start OpenCode through harness/adapters/opencode/run.sh so OPENCODE_CONFIG loads
-the generated role overlay for this process. Do not overwrite, merge, or symlink a global
-opencode.jsonc. Return the links, generated path, and fresh-session check.
+Inspect the OpenCode adapter before activation. Run its activation only if all five target paths are
+available. Then start OpenCode through ~/.config/opencode/run.sh so OPENCODE_CONFIG loads the
+generated role overlay for this process. Do not overwrite, merge, or symlink a global opencode.jsonc.
+Return the links, generated path, and fresh-session check.
 ```
 
 ## 9. Business tests

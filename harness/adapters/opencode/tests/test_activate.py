@@ -17,7 +17,16 @@ class ActivateAdapterTest(unittest.TestCase):
             temporary_path = Path(temporary_directory)
             environment = os.environ.copy()
             environment["HOME"] = str(temporary_path / "home")
-            environment["XDG_CONFIG_HOME"] = str(temporary_path / "config")
+            environment.pop("XDG_CONFIG_HOME", None)
+            capture = temporary_path / "opencode-config-path"
+            opencode_stub = temporary_path / "opencode"
+            opencode_stub.write_text(
+                '#!/usr/bin/env bash\nprintf \'%s\' "${OPENCODE_CONFIG}" > "${OPENCODE_CAPTURE}"\n',
+                encoding="utf-8",
+            )
+            opencode_stub.chmod(0o755)
+            environment["OPENCODE_BIN"] = str(opencode_stub)
+            environment["OPENCODE_CAPTURE"] = str(capture)
 
             first_activation = subprocess.run(
                 ["bash", str(ACTIVATION_SCRIPT)],
@@ -27,9 +36,12 @@ class ActivateAdapterTest(unittest.TestCase):
                 text=True,
             )
 
-            config_directory = temporary_path / "config" / "opencode"
+            config_directory = temporary_path / "home" / ".config" / "opencode"
             expected_links = {
-                config_directory / "AGENTS.md": REPOSITORY_DIRECTORY / "AGENTS.md",
+                config_directory / "AGENTS.md": REPOSITORY_DIRECTORY
+                / "harness"
+                / "router"
+                / "AGENTS.md",
                 config_directory / "guidance": REPOSITORY_DIRECTORY
                 / "harness"
                 / "guidance",
@@ -38,6 +50,7 @@ class ActivateAdapterTest(unittest.TestCase):
                 / "harness"
                 / "skills"
                 / ".organized",
+                config_directory / "run.sh": ACTIVATION_SCRIPT.parent / "run.sh",
             }
 
             for target, source in expected_links.items():
@@ -51,6 +64,16 @@ class ActivateAdapterTest(unittest.TestCase):
                 REPOSITORY_DIRECTORY / "harness" / "skills" / "manifest.yaml",
             )
 
+            subprocess.run(
+                [str(config_directory / "run.sh")],
+                check=True,
+                env=environment,
+            )
+            self.assertEqual(
+                capture.read_text(encoding="utf-8"),
+                str(ADAPTER_DIRECTORY / ".generated" / "opencode.jsonc"),
+            )
+
             second_activation = subprocess.run(
                 ["bash", str(ACTIVATION_SCRIPT)],
                 check=True,
@@ -59,7 +82,31 @@ class ActivateAdapterTest(unittest.TestCase):
                 text=True,
             )
             self.assertIn("Linked:", first_activation.stdout)
-            self.assertEqual(second_activation.stdout.count("Already linked:"), 4)
+            self.assertEqual(second_activation.stdout.count("Already linked:"), 5)
+
+    def test_refuses_an_occupied_target_before_linking_any_source(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            temporary_path = Path(temporary_directory)
+            environment = os.environ.copy()
+            environment["HOME"] = str(temporary_path / "home")
+            environment.pop("XDG_CONFIG_HOME", None)
+            occupied_rules_directory = (
+                temporary_path / "home" / ".config" / "opencode" / "rules"
+            )
+            occupied_rules_directory.mkdir(parents=True)
+
+            activation = subprocess.run(
+                ["bash", str(ACTIVATION_SCRIPT)],
+                check=False,
+                env=environment,
+                capture_output=True,
+                text=True,
+            )
+
+            config_directory = temporary_path / "home" / ".config" / "opencode"
+            self.assertNotEqual(activation.returncode, 0)
+            self.assertIn("already exists", activation.stderr)
+            self.assertFalse((config_directory / "AGENTS.md").exists())
 
 
 if __name__ == "__main__":

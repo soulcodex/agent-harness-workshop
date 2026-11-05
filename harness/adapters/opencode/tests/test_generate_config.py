@@ -33,6 +33,8 @@ class GenerateConfigTest(unittest.TestCase):
         self.assertEqual(set(agents), AGENT_NAMES)
         self.assertEqual(set(generated), {"$schema", "agent"})
         self.assertEqual(agents["architect"]["mode"], "primary")
+        for agent_name in AGENT_NAMES - {"architect"}:
+            self.assertEqual(agents[agent_name]["mode"], "subagent")
         self.assertEqual(
             set(agents["architect"]["permission"]["task"]),
             AGENT_NAMES - {"architect"},

@@ -1,5 +1,6 @@
 ---
 role: architect
+agent_type: agent
 description: Owns the evidence gate, scopes verified work, and delegates bounded tasks.
 ---
 

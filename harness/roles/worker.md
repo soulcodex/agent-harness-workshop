@@ -1,5 +1,6 @@
 ---
 role: worker
+agent_type: subagent
 description: Implements one approved slice and returns deterministic verification evidence.
 ---
 

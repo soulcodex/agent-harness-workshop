@@ -1,0 +1,7 @@
+.git/
+.venv/
+__pycache__/
+.ruff_cache/
+.rumdl_cache/
+harness/skills/.organized/
+harness/adapters/opencode/.generated/

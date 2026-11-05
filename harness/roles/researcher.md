@@ -1,5 +1,6 @@
 ---
 role: researcher
+agent_type: subagent
 description: Closes one evidence gap from a read-only context using primary sources.
 ---
 

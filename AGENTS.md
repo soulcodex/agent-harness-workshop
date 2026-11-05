@@ -1,44 +1,30 @@
-# Portable Agent Router
+# Agent Harness Workshop Repository
 
-This file is canonical for portable harness policy. It travels between projects.
-A target project's `AGENTS.md` supplies its local architecture, commands, tooling, style, tests,
-and delivery constraints. Its factual assertions about behavior, architecture, or business rules are
-claims until corroborated by source code, tests, configuration, runtime state, or an authoritative
-source.
+These instructions govern this repository. They are not installed into OpenCode. The installable
+portable router is [`harness/router/AGENTS.md`](harness/router/AGENTS.md).
 
-## Always-on contract
+## Repository boundary
 
-- Establish facts from source code, tests, configuration, runtime state, or an authoritative source
-  before making a material claim or decision.
-- Keep output concise. State the result, evidence, and next action.
-- Separate portable policy from project-specific facts. Do not copy repository rules into this
-  harness.
-- Prefer the smallest change that solves the verified problem.
-- Treat deterministic checks as evidence about their narrow contract. They do not prove broader
-  behavior by themselves.
-- Treat warnings, especially deprecations, as evidence that needs an explicit disposition. Do not
-  suppress or silently accept them.
+- Keep Karma API facts, application code, and project-local constraints out of this repository.
+- Keep portable policy in `harness/router/`, `harness/guidance/`, `harness/rules/`,
+  `harness/roles/`, and `harness/skills/`.
+- Keep OpenCode-specific mapping in `harness/adapters/opencode/`.
+- Treat `ARCHITECTURE.md` as the architectural source of truth. Change it only when an evidenced
+  architecture decision changes a source owner, host contract, generated artifact, compatibility
+  boundary, or rollback path. The change must name the evidence and its validation.
 
-## Lazy context router
+## Available commands
 
-Read the smallest matching source before acting.
-
-| Source | Read when | What it governs |
+| Command | Purpose | Produced artifact or effect |
 | --- | --- | --- |
-| `guidance/evidence.md` | Making a material claim, plan, or recommendation. | Evidence, uncertainty, and stop conditions. |
-| `guidance/python.md` | Changing or reviewing Python code. | Typed boundaries, domain pressure, and tests. |
-| `guidance/review.md` | Reviewing a change, diff, or verification result. | Independent review and ranked findings. |
-| `rules/transversal.md` | Changing architecture, persistence, APIs, or a cross-cutting concern. | Ownership, boundaries, and deterministic accountability. |
-| `skills/manifest.yaml` | Selecting a reusable workflow. | Available skills and their purpose. |
+| `./setup.sh` | Report workshop prerequisites without changing the host. | A missing-tool report. |
+| `./setup.sh --install` | Install missing attendee-owned prerequisites. | User-scoped `uv` and `skill-organizer` installations. |
+| `./setup.sh --verify` | Verify prerequisites and portable generated artifacts. | Generated skill profile and OpenCode overlay. |
+| `harness/skills/build-profile.sh` | Build the flat managed skills profile. | `harness/skills/.organized/`. |
+| `uv run python harness/adapters/opencode/generate_config.py` | Generate the OpenCode role overlay. | `harness/adapters/opencode/.generated/opencode.jsonc`. |
+| `harness/adapters/opencode/activate.sh` | Link the portable runtime into OpenCode configuration. | Five checked symlinks under `~/.config/opencode/`. |
+| `~/.config/opencode/run.sh` | Launch OpenCode with the generated role overlay. | A process-scoped `OPENCODE_CONFIG`. |
+| `harness/adapters/opencode/test-in-docker.sh` | Verify installation without touching a real home directory. | A disposable container simulation. |
 
-## Project boundary
-
-Read the target repository's instructions before changing it. Respect its local operating
-constraints and use its commands and verification rules. Do not use a factual assertion from a
-project instruction to justify a material decision until it has supporting evidence.
-
-## Installed layout
-
-The OpenCode adapter installs this router with `guidance/`, `rules/`, and `skills/` alongside it in
-the OpenCode configuration directory. Role cards and adapter sources are installation-time inputs:
-the generated OpenCode overlay receives role prompts from their canonical Markdown files.
+Run the smallest applicable command. Do not run activation or setup verification against a real
+developer home while changing this repository. Use the Docker verification command instead.

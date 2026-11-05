@@ -1,5 +1,6 @@
 ---
 role: security-auditor
+agent_type: subagent
 description: Enforces applicable OWASP controls at reached trust boundaries.
 ---
 

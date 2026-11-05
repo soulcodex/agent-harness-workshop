@@ -16,12 +16,13 @@ and missing evidence.
 
 **Problem:** portable guidance becomes contradictory when it has more than one entry point.
 
-Run prompt 1. Root `AGENTS.md` is the canonical portable source of truth. It routes to guidance,
-rules, roles, skills, and adapters without restating their detail. A target repository's `AGENTS.md`
-supplies local constraints, while factual assertions from it still need corroborating evidence.
+Run prompt 1. `harness/router/AGENTS.md` is the canonical portable source of truth. Root `AGENTS.md`
+governs only this harness repository and its commands. A target repository's `AGENTS.md` supplies
+local constraints, while factual assertions from it still need corroborating evidence.
 
-**Accept when:** there is no second harness `AGENTS.md`, and a project instruction remains outside
-this repository. The root router distinguishes local operating constraints from evidence.
+**Accept when:** root `AGENTS.md` is not installable, `harness/router/AGENTS.md` is the only
+installable router, and a project instruction remains outside this repository. The router
+distinguishes local operating constraints from evidence.
 `harness/rules/anti-slop.md` exists but is intentionally not routed yet.
 
 ## 2. Apply evidence guidance
@@ -40,7 +41,8 @@ prove the change.
 agent when to read it.
 
 Run prompts 3, 4, and 5 in order. Preserve the control response, add the `anti-slop.md` lazy-loading
-row to root `AGENTS.md`, restart the host or open a new session, then repeat the same prompt.
+row to `harness/router/AGENTS.md`, restart the host or open a new session, then repeat the same
+prompt.
 
 **Accept when:** the detailed rule remains outside `AGENTS.md`, the router contains one applicable
 row, and the attendee compares both responses for answer-first writing, evidence, uncertainty,
@@ -51,10 +53,10 @@ outputs are not deterministic.
 
 **Problem:** one agent can plan, implement, and approve an unsupported change without fresh scrutiny.
 
-Run prompt 6. `harness/adapters/opencode/generate_config.py` combines the role Markdown files and
-the host-specific `profile.yaml` into an OpenCode-only configuration overlay. It maps the portable
-responsibilities below to host agents but does not contain provider credentials, user MCP servers, or
-project facts.
+Run prompt 6. `harness/adapters/opencode/generate_config.py` combines role Markdown front matter and
+prompt bodies with the host-specific `profile.yaml` into an OpenCode-only configuration overlay. It
+maps the portable responsibilities below to host agents but does not contain provider credentials,
+user MCP servers, or project facts.
 
 | Portable role | Generated OpenCode agent | Expected behavior |
 | --- | --- | --- |
@@ -66,9 +68,9 @@ project facts.
 
 The human is not a sixth agent. The human accepts the result or asks for a replan after review.
 
-**Accept when:** the generated overlay names all five agents, the worker can edit while the other
-four cannot, and the architect can delegate only to the named subagents. The output remains
-inside `harness/adapters/opencode/.generated/`.
+**Accept when:** the generated overlay names one `agent` and four `subagent`s, the worker can edit
+while the other four cannot, and the architect can delegate only to the named subagents. The output
+remains inside `harness/adapters/opencode/.generated/`.
 
 ## 5. Manage the review skill
 
@@ -85,13 +87,13 @@ workshop.
 **Problem:** copying policy into a global OpenCode file creates a second source of truth and risky
 merges.
 
-Run prompt 8. The adapter creates OpenCode configuration symlinks for the root router, guidance,
-rules, and managed skills. The launcher generates and passes an OpenCode overlay through
-`OPENCODE_CONFIG` for that one process.
+Run prompt 8. The adapter creates OpenCode configuration symlinks for the portable router, guidance,
+rules, managed skills, and launcher. The linked launcher generates and passes an OpenCode overlay
+through `OPENCODE_CONFIG` for that one process.
 
-**Accept when:** all four OpenCode targets are symlinks to this repository's root router, guidance,
-rules, and managed skill profile. The generated overlay remains in this repository. If any target is
-already occupied, stop rather than merge or overwrite it.
+**Accept when:** all five OpenCode targets are symlinks to this repository's portable router,
+guidance, rules, managed skill profile, and launcher. The generated overlay remains in this
+repository. If any target is already occupied, stop rather than merge or overwrite it.
 
 ## 7. Apply transversal and Python rules
 

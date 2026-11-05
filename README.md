@@ -22,21 +22,25 @@ OpenCode
 ```text
 .
 ├── AGENTS.md
+├── ARCHITECTURE.md
 ├── MODEL_ROLE_RECIPES.md
 ├── WORKSHOP_PROMPTS.md
 ├── WORKSHOP_TASKS.md
 └── harness/
     ├── adapters/
-    │   ├── README.md
     │   └── opencode/
-    │       ├── README.md
-    │       └── activate.sh
+    │       ├── activate.sh
+    │       ├── run.sh
+    │       └── test-in-docker.sh
     ├── guidance/
     │   ├── evidence.md
     │   ├── python.md
     │   └── review.md
     ├── roles/
-    │   └── README.md
+    │   ├── architect.md
+    │   └── worker.md
+    ├── router/
+    │   └── AGENTS.md
     ├── rules/
     │   ├── anti-slop.md
     │   └── transversal.md
@@ -67,6 +71,20 @@ removes its temporary config, and verifies the generated skill and manifest. The
 `~/.config/opencode/skills` during an explicit, reversible activation after inspecting existing
 targets.
 
+## Setup and generated artifacts
+
+Run `./setup.sh` to inspect attendee prerequisites without changing the host. Run
+`./setup.sh --install` only to install missing `uv` and `skill-organizer` for the current user.
+`./setup.sh --verify` builds the disposable skill profile and OpenCode role overlay.
+
+The portable runtime is installed only by `harness/adapters/opencode/activate.sh`. It links the
+installable router, guidance, rules, skills, and launcher into `~/.config/opencode/`. The launcher
+is then available at `~/.config/opencode/run.sh`.
+
+Do not test installation against an existing OpenCode configuration while developing this repository.
+Run `bash harness/adapters/opencode/test-in-docker.sh` instead. It uses a container-only home
+directory and never mounts a host configuration.
+
 ## Attendee path
 
 Follow [the workshop tasks](WORKSHOP_TASKS.md) in order and copy prompts from
@@ -76,15 +94,19 @@ portable policy in visible layers, configure one host, and use the result to cha
 [Role-model recipes](MODEL_ROLE_RECIPES.md) gives fact-checked starting points for a small role
 loop. Confirm availability, access, and effort settings in the chosen host before using one.
 
-The root `AGENTS.md` is the canonical portable policy entry point. Guidance, rules, roles, skills,
-and adapters are routed from that file. A target repository's `AGENTS.md` supplies local operating
-constraints. Its factual claims still require corroboration before they justify a material decision.
-Do not create a second `AGENTS.md` under `harness/`.
+Root `AGENTS.md` governs this repository and names its available commands. The installable portable
+policy entry point is `harness/router/AGENTS.md`. A target repository's `AGENTS.md` supplies local
+operating constraints. Its factual claims still require corroboration before they justify a material
+decision.
+
+`ARCHITECTURE.md` defines source ownership, generated artifacts, and the host-installation contract.
+Change it only for an evidenced architectural decision.
 
 ## Current scope
 
 The canonical router, focused guidance, transversal rules, role contracts, and managed reusable
 review skill are present. `anti-slop.md` is deliberately not routed at first. Attendees activate it,
 restart their agent, and compare the same response before and after the route exists. OpenCode is
-the complete workshop adapter. The final exercise runs an evidence loop through the configured
-roles to prove the assembled harness on a real Karma API change.
+the complete workshop adapter. Pi remains a deferred adapter iteration if time permits. The final
+exercise runs an evidence loop through the configured roles to prove the assembled harness on a real
+Karma API change.
