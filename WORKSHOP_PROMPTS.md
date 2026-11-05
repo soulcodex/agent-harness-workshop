@@ -1,136 +1,123 @@
 # Workshop prompts
 
-Copy one prompt at a time. Each check states the evidence needed before moving on.
+Copy one prompt at a time. Open a fresh agent session after each router edit. Keep the comparison
+prompt unchanged.
 
-## 0. Baseline
+## 0. Baseline control
 
-**Check:** paths, commands, facts, assumptions, and unknowns are present.
+**Check:** facts, assumptions, unknowns, paths, and commands are present.
 
 ```text
 Inspect the Karma API without changing files. List current routes, relevant paths, checks to run,
 and missing evidence. Separate facts from assumptions. Do not propose architecture.
 ```
 
-## 1. Root router
+## 1. Evidence route
 
-**Check:** portable policy is separate from Karma API facts. Anti-slop is not routed yet.
+**Router row to add first:**
 
 ```text
-Inspect harness/router/AGENTS.md and root AGENTS.md. Confirm the router is the only installable
-portable policy entry point and root AGENTS.md governs only this harness repository. Confirm
-target-repository AGENTS.md files provide local constraints while factual claims still need evidence.
-Keep repository facts outside this harness. Do not route anti-slop.md. Report paths and any gap only.
+| `guidance/evidence.md` | Planning or recommending. | Facts, uncertainty, and stop conditions. |
 ```
 
-## 2. Evidence before action
-
-**Check:** the response names a business invariant, evidence, and a stop condition.
+**Check:** the response names an invariant, sources, affected paths, validation, and a stop
+condition.
 
 ```text
-Read the applicable repository instructions and evidence guidance. Do not edit files. What is the
+Read the applicable repository instructions and routed guidance. Do not edit files. What is the
 smallest verified next step for the Karma API? State the business invariant, evidence, affected
 paths, commands, and a stop condition.
 ```
 
+## 2. Planning route
+
+**Router row to add first:**
+
+```text
+| `guidance/planning.md` | Planning a change. | Scope, acceptance, risks, and stop conditions. |
+```
+
+**Check:** the plan is executable and stays inside the daily-budget goal.
+
+```text
+Read the applicable repository instructions and routed guidance. Do not edit files. Plan the daily
+Karma budget change. Include the verified starting point, goal and invariant, scope and exclusions,
+ordered work, acceptance evidence, credible risks, and a stop condition. Mark unknowns as unknowns.
+```
+
 ## 3. Anti-slop control run
 
-**Check:** save this response before changing the router.
+**Check:** save this response before adding the anti-slop route.
 
 ```text
-Without editing files, write a handoff for the current Karma API baseline: what should change next,
-why, and how to validate it.
+Without editing files, write a handoff for the current Karma API daily-budget plan: what should
+change next, why, and how to validate it.
 ```
 
-## 4. Activate anti-slop
+## 4. Anti-slop comparison run
 
-**Check:** the router gains one route. The rule content is not copied into AGENTS.md.
+**Router row to add first:**
 
 ```text
-Add a lazy-loading route to harness/router/AGENTS.md for rules/anti-slop.md when writing plans,
-reviews, handoffs,
-documentation, commit messages, or PR text. Keep the detailed rule outside AGENTS.md. Show the
-smallest change and how a fresh session will load it.
+| `rules/anti-slop.md` | Writing plans, handoffs, or reviews. | Concise decisions. |
 ```
 
-## 5. Anti-slop comparison run
-
-**Check:** compare this response with prompt 3. Identify one useful change and one source of
-non-determinism.
+**Check:** compare the result with prompt 3 for usefulness, not identical wording.
 
 ```text
-Without editing files, write a handoff for the current Karma API baseline: what should change next,
-why, and how to validate it.
+Without editing files, write a handoff for the current Karma API daily-budget plan: what should
+change next, why, and how to validate it.
 ```
 
-## 6. Generate OpenCode roles
+## 5. Engineering routes
 
-**Check:** the generated overlay names the five configured agents and does not contain credentials,
-provider setup, MCP servers, or project facts.
+**Router rows to add first:**
 
 ```text
-Inspect harness/roles/, harness/adapters/opencode/profile.yaml, and
-harness/adapters/opencode/generate_config.py. Generate the OpenCode overlay. Verify it maps
-architect, researcher, worker, auditor, and security-auditor to the portable role contract without
-hardcoding prompts, names, or models in Python. Do not edit an existing global opencode.jsonc. Return
-the generated path and the validation command.
+| `guidance/python.md` | Changing or reviewing Python. | Typed code and focused tests. |
+| `rules/transversal.md` | Cross-cutting changes. | Boundaries and deterministic checks. |
 ```
 
-## 7. Build the review skill
-
-**Check:** the generated skill resolves to its checked-in source and Git does not track it.
+**Check:** business policy has an owner outside the HTTP handler.
 
 ```text
-Build the managed review-change skill with harness/skills/build-profile.sh. Verify the generated
-SKILL.md resolves to the checked-in source. Do not upgrade or add skills.
+Inspect the Karma API and routed guidance. Do not edit files. Propose the smallest daily-budget
+slice. State the policy owner, typed inputs that clarify the operation, business tests, affected
+paths, deterministic checks, exclusions, and a stop condition.
 ```
 
-## 8. Activate the OpenCode reference adapter
+## 6. Business tests
 
-**Check:** the portable router, guidance, rules, and managed skills become OpenCode configuration
-symlinks. Generating the role overlay does not alter OpenCode startup.
+**Check:** each test proves an observable rule rather than a coverage target.
 
 ```text
-Inspect the OpenCode adapter before activation. Run its activation only if all four target paths are
-available. Do not overwrite, merge, or symlink a global opencode.jsonc. Return the links, generated
-path, and fresh-session check.
+Add focused tests for the Karma daily budget. Positive and negative limits are independent. The
+sixth point in either direction is rejected and a rejected adjustment leaves recorded state
+unchanged. Do not change production code. State what each test proves.
 ```
 
-## 9. Business tests
+## 7. Domain change
 
-**Check:** each test proves a Karma invariant rather than a coverage target.
+**Check:** the policy lives outside the HTTP edge and all focused checks pass.
 
 ```text
-Inspect the Karma API and its instructions. Add focused tests for the daily +5 and -5 limits. Do
-not change production code. State the behavior each test proves.
+Implement the smallest change that satisfies the daily-budget tests. Keep policy out of the HTTP
+handler. Use typed inputs where they remove a real ambiguity. Run the narrowest relevant checks and
+report their scope.
 ```
 
-## 10. Domain change
+## 8. Independent review
 
-**Check:** the HTTP edge is thinner and the domain owns the decision.
+**Router row to add first:**
 
 ```text
-Implement the smallest change that satisfies the Karma tests. Use typed inputs where they remove a
-real ambiguity. Keep policy out of the HTTP handler. Run the narrowest relevant checks.
+| `guidance/review.md` | Reviewing a change or result. | Independent review and findings. |
 ```
 
-## 11. Independent review
-
-**Check:** findings cite the diff or check output. Do not accept speculative defects.
+**Check:** findings cite evidence. An approval is valid when no credible finding exists.
 
 ```text
-Review the current Karma diff from a fresh, read-only context. Check requested behavior, design,
-and credible regressions. Return only evidence-backed findings or an approval.
-```
-
-## 12. Complete the evidence loop
-
-**Check:** architect, worker, and independent reviewers have separate responsibilities and each
-verdict cites evidence.
-
-```text
-Use the configured OpenCode roles to complete an evidence loop for the current Karma API change.
-The architect must define the acceptance criteria, affected boundary, deterministic checks, and stop
-condition. The worker implements only that bounded slice. The auditor reviews the resulting diff
-from fresh context. The security auditor reviews the reached API trust boundary against applicable
-OWASP controls. Return the evidence, verdicts, and whether the human should accept or replan.
+Review the current Karma diff from a fresh, read-only context. Check the requested daily-budget
+behavior, the policy boundary, and credible regressions. Return only evidence-backed findings or an
+approval. Include command evidence and the disposition of any warning.
 ```

@@ -8,31 +8,17 @@ configuration, runtime state, or an authoritative source.
 
 ## Always-on contract
 
-- Establish facts from source code, tests, configuration, runtime state, or an authoritative source
-  before making a material claim or decision.
-- Keep output concise. State the result, evidence, and next action.
-- Separate portable policy from project-specific facts. Do not copy repository rules into this
-  harness.
-- Prefer the smallest change that solves the verified problem.
-- Treat deterministic checks as evidence about their narrow contract. They do not prove broader
-  behavior by themselves.
-- Treat warnings, especially deprecations, as evidence that needs an explicit disposition. Do not
-  suppress or silently accept them.
+- Read the target repository's instructions before changing it.
+- Keep portable policy separate from project-specific facts.
+- Read only the context explicitly routed below.
 
 ## Lazy context router
 
-Read the smallest matching source before acting.
-
-| Source | Read when | What it governs |
-| --- | --- | --- |
-| `guidance/evidence.md` | Making a material claim, plan, or recommendation. | Evidence, uncertainty, and stop conditions. |
-| `guidance/python.md` | Changing or reviewing Python code. | Typed boundaries, domain pressure, and tests. |
-| `guidance/review.md` | Reviewing a change, diff, or verification result. | Independent review and ranked findings. |
-| `rules/transversal.md` | Changing architecture, persistence, APIs, or a cross-cutting concern. | Ownership, boundaries, and deterministic accountability. |
-| `skills/manifest.yaml` | Selecting a reusable workflow. | Available skills and their purpose. |
+This router intentionally starts without lazy routes. Add one row only when the workshop task calls
+for it, then begin a fresh session before comparing the next output.
 
 ## Project boundary
 
-Read the target repository's instructions before changing it. Respect its local operating
-constraints and use its commands and verification rules. Do not use a factual assertion from a
-project instruction to justify a material decision until it has supporting evidence.
+Respect the target repository's local operating constraints and use its commands and verification
+rules. Do not use a factual assertion from a project instruction to justify a material decision
+until it has supporting evidence.

@@ -1,133 +1,96 @@
 # Workshop tasks
 
-Complete the tasks in order. A task is complete only when its acceptance evidence is available.
-Keep Karma API facts in the API repository. Keep portable policy in this harness.
+Complete the tasks in order. Keep Karma API facts in the API repository. Keep portable policy in
+this harness. The router starts deliberately minimal, so every added row has an observable purpose.
 
 ## 0. Establish the baseline
 
-**Problem:** an agent can produce a plausible answer without knowing the current service behavior.
+**Problem:** an agent can produce a plausible plan without knowing the service.
 
-Run prompt 0 for a no-change inventory of Karma API routes, module context, instructions, checks,
-and missing evidence.
+Run prompt 0 without changing files. Save the response as the control for later comparisons.
 
-**Accept when:** the inventory cites paths and commands. It distinguishes facts from assumptions.
+**Accept when:** it cites routes, paths, commands, facts, assumptions, and unknowns.
 
-## 1. Verify the root router
+## 1. Add the evidence route
 
-**Problem:** portable guidance becomes contradictory when it has more than one entry point.
+**Problem:** a feature request does not prove the current behavior or the next change.
 
-Run prompt 1. `harness/router/AGENTS.md` is the canonical portable source of truth. Root `AGENTS.md`
-governs only this harness repository and its commands. A target repository's `AGENTS.md` supplies
-local constraints, while factual assertions from it still need corroborating evidence.
+Add this row to `harness/router/AGENTS.md`, open a fresh session, then run prompt 1:
 
-**Accept when:** root `AGENTS.md` is not installable, `harness/router/AGENTS.md` is the only
-installable router, and a project instruction remains outside this repository. The router
-distinguishes local operating constraints from evidence.
-`harness/rules/anti-slop.md` exists but is intentionally not routed yet.
-
-## 2. Apply evidence guidance
-
-**Problem:** a request for a feature does not establish the current behavior or the relevant rule.
-
-Run prompt 2 to inspect Karma module context and propose the smallest next behavior with explicit
-evidence and a stop condition.
-
-**Accept when:** the proposal names the business invariant, affected paths, and commands that will
-prove the change.
-
-## 3. Activate and compare anti-slop
-
-**Problem:** a rule stored in a repository does not affect an agent until the root router tells the
-agent when to read it.
-
-Run prompts 3, 4, and 5 in order. Preserve the control response, add the `anti-slop.md` lazy-loading
-row to `harness/router/AGENTS.md`, restart the host or open a new session, then repeat the same
-prompt.
-
-**Accept when:** the detailed rule remains outside `AGENTS.md`, the router contains one applicable
-row, and the attendee compares both responses for answer-first writing, evidence, uncertainty,
-filler, and a clear next action. The comparison identifies one useful change and one reason the
-outputs are not deterministic.
-
-## 4. Generate OpenCode work roles
-
-**Problem:** one agent can plan, implement, and approve an unsupported change without fresh scrutiny.
-
-Run prompt 6. `harness/adapters/opencode/generate_config.py` combines role Markdown front matter and
-prompt bodies with the host-specific `profile.yaml` into an OpenCode-only configuration overlay. It
-maps the portable responsibilities below to host agents but does not contain provider credentials,
-user MCP servers, or project facts.
-
-| Portable role | Generated OpenCode agent | Expected behavior |
+| Source | Read when | What it governs |
 | --- | --- | --- |
-| `architect` | `architect` | Verify the problem, set scope and acceptance criteria, then delegate bounded work. |
-| `researcher` | `researcher` | Close one evidence gap from a read-only context. |
-| `worker` | `worker` | Make the smallest approved change and run deterministic checks. |
-| `auditor` | `auditor` | Review the supplied diff and verification evidence from a fresh, read-only context. |
-| `security-auditor` | `security-auditor` | Inspect reached trust paths against applicable OWASP controls from a fresh, read-only context. |
+| `guidance/evidence.md` | Planning or recommending. | Facts, uncertainty, and stop conditions. |
 
-The human is not a sixth agent. The human accepts the result or asks for a replan after review.
+**Accept when:** the next-step proposal names the invariant, sources, affected paths, validation,
+and a stop condition.
 
-**Accept when:** the generated overlay names one `agent` and four `subagent`s, the worker can edit
-while the other four cannot, and the architect can delegate only to the named subagents. The output
-remains inside `harness/adapters/opencode/.generated/`.
+## 2. Add the planning route
 
-## 5. Manage the review skill
+**Problem:** evidence alone does not make a plan executable or keep it bounded.
 
-**Problem:** reusable workflows drift when copied into each host's private configuration.
+Add this row, open a fresh session, then run prompt 2:
 
-Run prompt 7 to build the managed `review-change` skill with `skill-organizer`.
+| Source | Read when | What it governs |
+| --- | --- | --- |
+| `guidance/planning.md` | Planning a change. | Scope, acceptance, risks, and stop conditions. |
 
-**Accept when:** `harness/skills/.organized/review-change/SKILL.md` and its `manifest.yaml` resolve
-to checked-in sources, and Git does not track the generated tree. Do not upgrade skills during the
-workshop.
+**Accept when:** the plan is specific enough to execute, excludes unrelated work, and labels any
+unknowns instead of inventing them.
 
-## 6. Activate the OpenCode reference adapter
+## 3. Add the anti-slop route
 
-**Problem:** copying policy into a global OpenCode file creates a second source of truth and risky
-merges.
+**Problem:** a rule stored in a repository changes nothing until the router makes it available.
 
-Run prompt 8. The adapter creates OpenCode configuration symlinks for the portable router, guidance,
-rules, and managed skills. Generating the role overlay does not alter OpenCode startup.
+Preserve the control response from prompt 3. Add this row, open a fresh session, then repeat the
+same prompt with prompt 4:
 
-**Accept when:** all four OpenCode targets are symlinks to this repository's portable router,
-guidance, rules, and managed skill profile. The generated overlay remains in this repository. If any
-target is already occupied, stop rather than merge or overwrite it.
+| Source | Read when | What it governs |
+| --- | --- | --- |
+| `rules/anti-slop.md` | Writing plans, handoffs, or reviews. | Concise decisions. |
 
-## 7. Apply transversal and Python rules
+**Accept when:** the detailed rule stays outside `AGENTS.md`, the comparison identifies one useful
+change, and it names one reason exact wording still varies.
 
-**Problem:** direct HTTP and primitive-value code makes it easy to move business policy into the
-wrong layer.
+## 4. Add engineering routes
 
-Run prompts 9 and 10. Use `harness/rules/transversal.md` and `harness/guidance/python.md` when
-implementing the first Karma slice. Prefer typed inputs and business tests. Add an abstraction only
-when the service has a real boundary to protect.
+**Problem:** the service needs business policy without moving it into HTTP handlers.
 
-**Accept when:** the HTTP edge is not the only owner of the Karma decision, and tests demonstrate a
-business invariant rather than a coverage number.
+Add these rows before asking an agent to change the Karma API, then run prompt 5:
 
-## 8. Deliver and challenge one Karma change
+| Source | Read when | What it governs |
+| --- | --- | --- |
+| `guidance/python.md` | Changing or reviewing Python. | Typed code and focused tests. |
+| `rules/transversal.md` | Cross-cutting changes. | Boundaries and deterministic checks. |
 
-**Problem:** a passing-looking diff is not necessarily a correct or maintainable result.
+**Accept when:** the proposed daily-budget slice has business tests, typed inputs where they clarify
+meaning, and a policy owner outside the HTTP edge.
 
-Run prompt 11 in a fresh reviewer context after the deterministic checks finish.
+## 5. Implement the Karma rule
 
-**Accept when:** the result includes changed behavior, command evidence, warning disposition, and any
-unresolved risk. Record one harness refinement prompted by the review.
+**Problem:** the supplied API records happy-path adjustments but does not enforce daily limits.
 
-## 9. Complete the evidence loop
+Run prompts 6 and 7. Add tests first for independent daily `+5` and `-5` limits and for rejection
+without mutation. Then implement the smallest policy that satisfies them.
 
-**Problem:** a set of installed files does not prove that role boundaries, evidence, and independent
-review actually work together.
+**Accept when:** accepted adjustments remain observable, a sixth directional point is rejected,
+positive and negative totals remain independent, and rejected requests leave state unchanged.
 
-Run prompt 12 after the Karma change exists. Use the configured OpenCode role loop: architect,
-worker, auditor, and security auditor. Keep the review contexts fresh and bounded by the supplied
-goal, diff, checks, affected boundary, and stop condition.
+## 6. Add the review route and challenge the change
 
-**Accept when:** the final packet separates the architect's scope, worker's implementation evidence,
-auditor's code verdict, and security auditor's OWASP-backed verdict. The human can accept the
-change or request a replan from the evidence.
+**Problem:** implementation context cannot approve its own work.
+
+Add this row, open a fresh reviewer session, then run prompt 8:
+
+| Source | Read when | What it governs |
+| --- | --- | --- |
+| `guidance/review.md` | Reviewing a change or result. | Independent review and findings. |
+
+**Accept when:** the review cites the diff or command output, distinguishes findings from approval,
+includes warning disposition, and leaves acceptance or replanning to the human.
 
 ## Extensions after the core path
 
-- Add SQLite only after in-memory Karma behavior makes persistence a real boundary.
+- Generate the OpenCode role profile from the portable role sources.
+- Build and organize reusable skills.
+- Activate the OpenCode adapter only after inspecting existing host targets.
+- Add a Pi adapter, SQLite, memory, or deterministic architecture tests when time permits.
