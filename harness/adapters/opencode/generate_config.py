@@ -27,6 +27,7 @@ MODE_BY_AGENT_TYPE: dict[PortableAgentType, AgentMode] = {
     "agent": "primary",
     "subagent": "subagent",
 }
+PORTABLE_AGENT_TYPES: tuple[PortableAgentType, ...] = ("agent", "subagent")
 
 
 class ConfigurationError(ValueError):
@@ -146,6 +147,12 @@ def required_strings(
     return tuple(value)
 
 
+def required_portable_agent_type(
+    document: Mapping[object, object], key: str, location: str
+) -> PortableAgentType:
+    return required_choice(document, key, location, PORTABLE_AGENT_TYPES)
+
+
 def required_permission_rule(
     document: Mapping[object, object], key: str, location: str
 ) -> PermissionRule:
@@ -191,11 +198,8 @@ def parse_role(path: Path) -> RolePrompt:
         raise ConfigurationError(
             f"{path} must include a prompt after its front matter."
         )
-    agent_type = required_choice(
-        metadata,
-        "agent_type",
-        f"{path} front matter",
-        ("agent", "subagent"),
+    agent_type = required_portable_agent_type(
+        metadata, "agent_type", f"{path} front matter"
     )
     return RolePrompt(
         role=role,
