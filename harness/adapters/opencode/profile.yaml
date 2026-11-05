@@ -6,8 +6,26 @@ agents:
     temperature: 0.2
     variant: xhigh
     permissions:
+      read: allow
+      glob: allow
+      grep: allow
       edit: deny
-      bash: ask
+      bash:
+        "*": allow
+        "git commit *": deny
+        "git rebase *": deny
+        "git cherry-pick *": deny
+        "git reset *": deny
+        "git clean *": deny
+        "git push *": deny
+        "git remote -v": deny
+        "git remote -v *": deny
+      skill: allow
+      lsp: allow
+      todowrite: allow
+      question: allow
+      webfetch: allow
+      websearch: allow
       task_roles:
         - researcher
         - worker
@@ -20,8 +38,17 @@ agents:
     temperature: 0.1
     variant: low
     permissions:
+      read: allow
+      glob: allow
+      grep: allow
       edit: deny
       bash: deny
+      skill: allow
+      lsp: allow
+      todowrite: deny
+      question: deny
+      webfetch: allow
+      websearch: allow
       task_roles: []
   - role: worker
     name: worker
@@ -30,8 +57,33 @@ agents:
     temperature: 0.15
     variant: high
     permissions:
+      read: allow
+      glob: allow
+      grep: allow
       edit: allow
-      bash: allow
+      bash:
+        "*": allow
+        "rm *": ask
+        "rm -r *": ask
+        "rm -rf *": ask
+        "sudo *": ask
+        "chmod *": ask
+        "chown *": ask
+        "git push *": ask
+        "git reset *": ask
+        "git clean *": ask
+        "curl * | sh": ask
+        "curl * | bash": ask
+        "wget * | sh": ask
+        "wget * | bash": ask
+        "git remote -v": deny
+        "git remote -v *": deny
+      skill: allow
+      lsp: allow
+      todowrite: allow
+      question: deny
+      webfetch: allow
+      websearch: allow
       task_roles: []
   - role: auditor
     name: auditor
@@ -40,8 +92,25 @@ agents:
     temperature: 0.1
     variant: medium
     permissions:
+      read: allow
+      glob: allow
+      grep: allow
       edit: deny
-      bash: deny
+      bash:
+        "*": deny
+        "git grep": allow
+        "git grep *": allow
+        "git status": allow
+        "git status *": allow
+        "git rev-parse *": allow
+        "git diff": allow
+        "git diff *": allow
+      skill: allow
+      lsp: allow
+      todowrite: deny
+      question: deny
+      webfetch: deny
+      websearch: deny
       task_roles: []
   - role: security-auditor
     name: security-auditor
@@ -50,6 +119,33 @@ agents:
     temperature: 0.1
     variant: high
     permissions:
+      read: allow
+      glob: allow
+      grep: allow
       edit: deny
-      bash: deny
+      bash:
+        "*": deny
+        "git grep": allow
+        "git grep *": allow
+        "git status": allow
+        "git status *": allow
+        "git rev-parse *": allow
+        "git diff": allow
+        "git diff *": allow
+        "git log": allow
+        "git log *": allow
+        "git show": allow
+        "git show *": allow
+        "git branch": allow
+        "git branch --list": allow
+        "git branch --list *": allow
+        "git branch -a": allow
+        "git branch -r": allow
+        "git worktree list": allow
+      skill: allow
+      lsp: allow
+      todowrite: deny
+      question: deny
+      webfetch: deny
+      websearch: deny
       task_roles: []

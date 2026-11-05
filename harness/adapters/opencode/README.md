@@ -20,6 +20,12 @@ The model identifiers in `profile.yaml` are a working reference profile. Replace
 that exist in your configured OpenCode providers before a workshop run. Those identifiers are host
 configuration, not portable policy.
 
+The profile grants normal in-workspace work without approval: the architect can inspect and delegate,
+the worker can change and verify code, the researcher can inspect and fetch sources, and the auditors
+stay read-only while inspecting Git history and diffs. It keeps worker confirmation for destructive
+shell commands and blocks subagents from asking the user. Personal path rules, RTK-specific commands,
+provider tools, MCP permissions, and credentials remain out of this reference adapter.
+
 OpenCode combines its global `AGENTS.md` with repository `AGENTS.md` files. The global router is
 portable policy. Target repositories remain the owner of business rules, commands, architecture,
 and runtime facts.

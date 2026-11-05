@@ -38,6 +38,16 @@ class GenerateConfigTest(unittest.TestCase):
             AGENT_NAMES - {"architect"},
         )
         self.assertEqual(agents["worker"]["permission"]["edit"], "allow")
+        self.assertEqual(agents["worker"]["permission"]["question"], "deny")
+        self.assertEqual(agents["worker"]["permission"]["bash"]["git push *"], "ask")
+        self.assertEqual(
+            agents["architect"]["permission"]["bash"]["git push *"], "deny"
+        )
+        self.assertEqual(agents["researcher"]["permission"]["read"], "allow")
+        self.assertEqual(agents["auditor"]["permission"]["bash"]["git diff *"], "allow")
+        self.assertEqual(
+            agents["security-auditor"]["permission"]["bash"]["git log *"], "allow"
+        )
         for agent_name in AGENT_NAMES - {"worker"}:
             self.assertEqual(agents[agent_name]["permission"]["edit"], "deny")
 
