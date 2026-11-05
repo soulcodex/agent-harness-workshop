@@ -51,22 +51,23 @@ outputs are not deterministic.
 
 **Problem:** one agent can plan, implement, and approve an unsupported change without fresh scrutiny.
 
-Run prompt 6. `harness/adapters/opencode/generate_config.py` produces an OpenCode-only configuration
-overlay. It maps the portable responsibilities below to host agents but does not contain provider
-credentials, user MCP servers, or project facts.
+Run prompt 6. `harness/adapters/opencode/generate_config.py` combines the role Markdown files and
+the host-specific `profile.yaml` into an OpenCode-only configuration overlay. It maps the portable
+responsibilities below to host agents but does not contain provider credentials, user MCP servers, or
+project facts.
 
 | Portable role | Generated OpenCode agent | Expected behavior |
 | --- | --- | --- |
-| `architect` | `workshop-architect` | Verify the problem, set scope and acceptance criteria, then delegate bounded work. |
-| `researcher` | `workshop-researcher` | Close one evidence gap from a read-only context. |
-| `worker` | `workshop-worker` | Make the smallest approved change and run deterministic checks. |
-| `auditor` | `workshop-auditor` | Review the supplied diff and verification evidence from a fresh, read-only context. |
-| `security-auditor` | `workshop-security-auditor` | Inspect reached trust paths and credible exploit routes from a fresh, read-only context. |
+| `architect` | `architect` | Verify the problem, set scope and acceptance criteria, then delegate bounded work. |
+| `researcher` | `researcher` | Close one evidence gap from a read-only context. |
+| `worker` | `worker` | Make the smallest approved change and run deterministic checks. |
+| `auditor` | `auditor` | Review the supplied diff and verification evidence from a fresh, read-only context. |
+| `security-auditor` | `security-auditor` | Inspect reached trust paths and credible exploit routes from a fresh, read-only context. |
 
 The human is not a sixth agent. The human accepts the result or asks for a replan after review.
 
 **Accept when:** the generated overlay names all five agents, the worker can edit while the other
-four cannot, and the architect can delegate only to the named workshop subagents. The output remains
+four cannot, and the architect can delegate only to the named subagents. The output remains
 inside `harness/adapters/opencode/.generated/`.
 
 ## 5. Manage the review skill

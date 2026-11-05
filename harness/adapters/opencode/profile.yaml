@@ -1,0 +1,55 @@
+agents:
+  - role: architect
+    name: architect
+    model: openai/gpt-5.6-terra
+    mode: primary
+    temperature: 0.2
+    variant: xhigh
+    permissions:
+      edit: deny
+      bash: ask
+      task_roles:
+        - researcher
+        - worker
+        - auditor
+        - security-auditor
+  - role: researcher
+    name: researcher
+    model: opencode-go/deepseek-v4.1-flash
+    mode: subagent
+    temperature: 0.1
+    variant: low
+    permissions:
+      edit: deny
+      bash: deny
+      task_roles: []
+  - role: worker
+    name: worker
+    model: opencode-go/deepseek-v4.1-flash
+    mode: subagent
+    temperature: 0.15
+    variant: high
+    permissions:
+      edit: allow
+      bash: allow
+      task_roles: []
+  - role: auditor
+    name: auditor
+    model: openai/gpt-5.6-luna
+    mode: subagent
+    temperature: 0.1
+    variant: medium
+    permissions:
+      edit: deny
+      bash: deny
+      task_roles: []
+  - role: security-auditor
+    name: security-auditor
+    model: openai/gpt-5.6-terra
+    mode: subagent
+    temperature: 0.1
+    variant: high
+    permissions:
+      edit: deny
+      bash: deny
+      task_roles: []

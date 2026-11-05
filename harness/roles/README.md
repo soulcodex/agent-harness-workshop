@@ -1,8 +1,8 @@
 # Portable work roles
 
-These roles describe responsibilities, not host-specific agent configuration. The OpenCode adapter
-maps them to `workshop-*` agent identifiers. Pi may map the same responsibilities to fresh sessions
-or carefully bounded prompts.
+Each role Markdown file is the canonical source for its short prompt and OpenCode description. The
+OpenCode profile maps the portable roles to host-specific agent identifiers, models, and permissions.
+Pi may map the same responsibilities to fresh sessions or carefully bounded prompts.
 
 | Role | Expected behavior | Boundary | Handoff |
 | --- | --- | --- | --- |
@@ -14,3 +14,11 @@ or carefully bounded prompts.
 
 The human decides whether to accept the result or replan. Keep role instructions small. The root
 router and its lazy-loaded sources remain the portable policy source of truth.
+
+| Role | Canonical prompt |
+| --- | --- |
+| `architect` | [`architect.md`](architect.md) |
+| `researcher` | [`researcher.md`](researcher.md) |
+| `worker` | [`worker.md`](worker.md) |
+| `auditor` | [`auditor.md`](auditor.md) |
+| `security-auditor` | [`security-auditor.md`](security-auditor.md) |

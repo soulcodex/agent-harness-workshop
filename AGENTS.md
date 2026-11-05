@@ -29,7 +29,7 @@ Read the smallest matching source before acting.
 | `harness/guidance/python.md` | Changing or reviewing Python code. | Typed boundaries, domain pressure, and tests. |
 | `harness/guidance/review.md` | Reviewing a change, diff, or verification result. | Independent review and ranked findings. |
 | `harness/rules/transversal.md` | Changing architecture, persistence, APIs, or a cross-cutting concern. | Ownership, boundaries, and deterministic accountability. |
-| `harness/roles/README.md` | Selecting or defining a work role. | Portable architect, implementer, and reviewer responsibilities. |
+| `harness/roles/README.md` then the selected role file | Selecting or defining a work role. | Portable role responsibility, handoff, and host-ready prompt. |
 | `harness/skills/manifest.yaml` | Selecting a reusable workflow. | Available skills and their purpose. |
 | `harness/adapters/README.md` | Installing or changing a host adapter. | Host translation and portability limits. |
 

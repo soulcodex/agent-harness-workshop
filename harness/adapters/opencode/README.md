@@ -11,6 +11,15 @@ leaving target-project instructions and existing user configuration intact.
 | `~/.agents/skills/` | `harness/skills/scopes/workshop/.organized/` | Managed reusable skills. |
 | Per-run `OPENCODE_CONFIG` | `.generated/opencode.jsonc` | Generated five-role OpenCode overlay. |
 
+`harness/roles/*.md` owns the prompt and description for each portable role. This adapter's
+[`profile.yaml`](profile.yaml) owns the corresponding OpenCode name, model, mode, temperature,
+variant, and permissions. The generator validates those two sources and has no role prompt, agent
+name, or model choice of its own.
+
+The model identifiers in `profile.yaml` are a working reference profile. Replace them with model IDs
+that exist in your configured OpenCode providers before a workshop run. Those identifiers are host
+configuration, not portable policy.
+
 OpenCode combines its global `AGENTS.md` with repository `AGENTS.md` files. The global router is
 portable policy. Target repositories remain the owner of business rules, commands, architecture,
 and runtime facts.

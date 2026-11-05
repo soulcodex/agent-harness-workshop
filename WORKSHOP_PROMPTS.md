@@ -63,14 +63,15 @@ why, and how to validate it.
 
 ## 6. Generate OpenCode roles
 
-**Check:** the generated overlay names five workshop agents and does not contain credentials,
+**Check:** the generated overlay names the five configured agents and does not contain credentials,
 provider setup, MCP servers, or project facts.
 
 ```text
-Inspect harness/adapters/opencode/generate_config.py and harness/roles/README.md. Generate the
-OpenCode overlay. Verify it maps workshop-architect, workshop-researcher, workshop-worker,
-workshop-auditor, and workshop-security-auditor to the portable role contract. Do not edit an
-existing global opencode.jsonc. Return the generated path and the validation command.
+Inspect harness/roles/, harness/adapters/opencode/profile.yaml, and
+harness/adapters/opencode/generate_config.py. Generate the OpenCode overlay. Verify it maps
+architect, researcher, worker, auditor, and security-auditor to the portable role contract without
+hardcoding prompts, names, or models in Python. Do not edit an existing global opencode.jsonc. Return
+the generated path and the validation command.
 ```
 
 ## 7. Build the review skill
