@@ -1,4 +1,4 @@
-"""Generate the OpenCode-only role overlay used by the workshop launcher."""
+"""Generate the OpenCode-only role overlay used by the workshop."""
 
 from __future__ import annotations
 

@@ -17,7 +17,6 @@ RUN mkdir -p "${HOME}" \
     && chmod +x setup.sh \
     harness/skills/build-profile.sh \
     harness/adapters/opencode/activate.sh \
-    harness/adapters/opencode/run.sh \
     harness/adapters/opencode/verify-container.sh \
     harness/adapters/opencode/test-in-docker.sh \
     && ./setup.sh --install --verify \

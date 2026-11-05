@@ -30,7 +30,6 @@ OpenCode
     ├── adapters/
     │   └── opencode/
     │       ├── activate.sh
-    │       ├── run.sh
     │       └── test-in-docker.sh
     ├── guidance/
     │   ├── evidence.md
@@ -78,8 +77,7 @@ Run `./setup.sh` to inspect attendee prerequisites without changing the host. Ru
 `./setup.sh --verify` builds the disposable skill profile and OpenCode role overlay.
 
 The portable runtime is installed only by `harness/adapters/opencode/activate.sh`. It links the
-installable router, guidance, rules, skills, and launcher into `~/.config/opencode/`. The launcher
-is then available at `~/.config/opencode/run.sh`.
+installable router, guidance, rules, and skills into `~/.config/opencode/`.
 
 Do not test installation against an existing OpenCode configuration while developing this repository.
 Run `bash harness/adapters/opencode/test-in-docker.sh` instead. It uses a container-only home

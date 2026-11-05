@@ -16,7 +16,7 @@ Pi remains a deferred adapter iteration and is not part of the attendee exercise
 | Role prompts | `harness/roles/*.md` | OpenCode overlay generator. |
 | Host configuration | `harness/adapters/opencode/profile.yaml` | OpenCode overlay generator. |
 | Managed skills | `harness/skills/source/` | Generated flat skills profile. |
-| Adapter implementation | `harness/adapters/opencode/` | OpenCode installation and launcher. |
+| Adapter implementation | `harness/adapters/opencode/` | OpenCode installation and overlay generator. |
 
 Do not copy portable policy into a target project or an OpenCode-owned configuration file.
 
@@ -31,11 +31,10 @@ availability check:
 | `~/.config/opencode/guidance` | `harness/guidance` |
 | `~/.config/opencode/rules` | `harness/rules` |
 | `~/.config/opencode/skills` | `harness/skills/.organized` |
-| `~/.config/opencode/run.sh` | `harness/adapters/opencode/run.sh` |
 
-The generated `opencode.jsonc` remains under the adapter directory and is supplied only through
-`OPENCODE_CONFIG` by the linked launcher. Activation never merges, replaces, moves, or backs up a
-user-owned OpenCode file.
+The generated `opencode.jsonc` remains under the adapter directory. It is not activated by this
+workshop because OpenCode does not discover arbitrary launcher scripts. Activation never merges,
+replaces, moves, or backs up a user-owned OpenCode file.
 
 ## Role mapping
 

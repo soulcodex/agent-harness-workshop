@@ -88,12 +88,11 @@ workshop.
 merges.
 
 Run prompt 8. The adapter creates OpenCode configuration symlinks for the portable router, guidance,
-rules, managed skills, and launcher. The linked launcher generates and passes an OpenCode overlay
-through `OPENCODE_CONFIG` for that one process.
+rules, and managed skills. Generating the role overlay does not alter OpenCode startup.
 
-**Accept when:** all five OpenCode targets are symlinks to this repository's portable router,
-guidance, rules, managed skill profile, and launcher. The generated overlay remains in this
-repository. If any target is already occupied, stop rather than merge or overwrite it.
+**Accept when:** all four OpenCode targets are symlinks to this repository's portable router,
+guidance, rules, and managed skill profile. The generated overlay remains in this repository. If any
+target is already occupied, stop rather than merge or overwrite it.
 
 ## 7. Apply transversal and Python rules
 

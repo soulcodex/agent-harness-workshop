@@ -22,8 +22,7 @@ portable router is [`harness/router/AGENTS.md`](harness/router/AGENTS.md).
 | `./setup.sh --verify` | Verify prerequisites and portable generated artifacts. | Generated skill profile and OpenCode overlay. |
 | `harness/skills/build-profile.sh` | Build the flat managed skills profile. | `harness/skills/.organized/`. |
 | `uv run python harness/adapters/opencode/generate_config.py` | Generate the OpenCode role overlay. | `harness/adapters/opencode/.generated/opencode.jsonc`. |
-| `harness/adapters/opencode/activate.sh` | Link the portable runtime into OpenCode configuration. | Five checked symlinks under `~/.config/opencode/`. |
-| `~/.config/opencode/run.sh` | Launch OpenCode with the generated role overlay. | A process-scoped `OPENCODE_CONFIG`. |
+| `harness/adapters/opencode/activate.sh` | Link the portable runtime into OpenCode configuration. | Four checked symlinks under `~/.config/opencode/`. |
 | `harness/adapters/opencode/test-in-docker.sh` | Verify installation without touching a real home directory. | A disposable container simulation. |
 
 Run the smallest applicable command. Do not run activation or setup verification against a real

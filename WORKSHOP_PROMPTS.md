@@ -86,14 +86,13 @@ SKILL.md resolves to the checked-in source. Do not upgrade or add skills.
 
 ## 8. Activate the OpenCode reference adapter
 
-**Check:** the portable router, guidance, rules, managed skills, and launcher become OpenCode
-configuration symlinks. The role overlay is loaded only by the linked launcher.
+**Check:** the portable router, guidance, rules, and managed skills become OpenCode configuration
+symlinks. Generating the role overlay does not alter OpenCode startup.
 
 ```text
-Inspect the OpenCode adapter before activation. Run its activation only if all five target paths are
-available. Then start OpenCode through ~/.config/opencode/run.sh so OPENCODE_CONFIG loads the
-generated role overlay for this process. Do not overwrite, merge, or symlink a global opencode.jsonc.
-Return the links, generated path, and fresh-session check.
+Inspect the OpenCode adapter before activation. Run its activation only if all four target paths are
+available. Do not overwrite, merge, or symlink a global opencode.jsonc. Return the links, generated
+path, and fresh-session check.
 ```
 
 ## 9. Business tests
