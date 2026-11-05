@@ -20,7 +20,7 @@ Use root `AGENTS.md` as the single portable source of truth. Confirm that it rou
 rules, roles, skills, and adapters without restating their detail.
 
 **Accept when:** there is no second harness `AGENTS.md`, and a project instruction remains outside
-this repository.
+this repository. `harness/rules/anti-slop.md` exists but is intentionally not routed yet.
 
 ## 2. Apply evidence guidance
 
@@ -32,7 +32,21 @@ the smallest next behavior with explicit evidence and a stop condition.
 **Accept when:** the proposal names the business invariant, the affected paths, and the commands
 that will prove the change.
 
-## 3. Apply transversal and Python rules
+## 3. Activate and compare anti-slop
+
+**Problem:** a rule stored in a repository does not affect an agent until the root router tells the
+agent when to read it.
+
+Run prompt 3 from `WORKSHOP_PROMPTS.md` in a fresh session and retain the response. Add the
+`anti-slop.md` lazy-loading row to root `AGENTS.md` with prompt 4. Restart the host or open a new
+session, then run prompt 5 unchanged.
+
+**Accept when:** the detailed rule remains outside `AGENTS.md`, the router contains one applicable
+row, and the attendee compares both responses for answer-first writing, evidence, uncertainty,
+filler, and a clear next action. The comparison identifies one useful change and one reason the
+outputs are not deterministic.
+
+## 4. Apply transversal and Python rules
 
 **Problem:** direct HTTP and primitive-value code makes it easy to move business policy into the
 wrong layer.
@@ -44,7 +58,7 @@ real boundary to protect.
 **Accept when:** the HTTP edge is not the only owner of the Karma decision, and tests demonstrate a
 business invariant rather than a coverage number.
 
-## 4. Configure work roles in OpenCode
+## 5. Configure work roles in OpenCode
 
 **Problem:** one agent can plan, implement, and approve an unsupported change without fresh
 scrutiny.
@@ -69,7 +83,7 @@ verdicts are available.
 limits. The worker cannot approve its own work. Both auditors receive the diff and verification
 evidence from a fresh context. The final decision remains with the human.
 
-## 5. Manage the review skill
+## 6. Manage the review skill
 
 **Problem:** reusable workflows drift when copied into each host's private configuration.
 
@@ -81,7 +95,7 @@ checked-in source and Git does not track the generated tree. If `skill-organizer
 updates have not been checked, record it as a maintenance signal. Do not upgrade skills during the
 workshop because this profile has one reviewed, local skill and no imported source to refresh.
 
-## 6. Activate the OpenCode reference adapter
+## 7. Activate the OpenCode reference adapter
 
 **Problem:** copying policy into a global OpenCode file creates a second source of truth and risky
 merges.
@@ -91,7 +105,7 @@ For an attendee using OpenCode, run `harness/adapters/opencode/activate.sh`.
 **Accept when:** both OpenCode targets are symlinks to this repository's root router and managed
 skill profile. If either target is already occupied, stop rather than merge or overwrite it.
 
-## 7. Deliver and challenge one Karma change
+## 8. Deliver and challenge one Karma change
 
 **Problem:** a passing-looking diff is not necessarily a correct or maintainable result.
 

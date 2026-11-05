@@ -23,6 +23,7 @@ OpenCode | Codex | Pi
 ```text
 .
 ├── AGENTS.md
+├── WORKSHOP_PROMPTS.md
 ├── WORKSHOP_TASKS.md
 └── harness/
     ├── adapters/
@@ -37,6 +38,7 @@ OpenCode | Codex | Pi
     ├── roles/
     │   └── README.md
     ├── rules/
+    │   ├── anti-slop.md
     │   └── transversal.md
     └── skills/
         ├── manifest.yaml
@@ -69,15 +71,17 @@ describes an explicit, reversible activation after inspecting any existing globa
 
 ## Attendee path
 
-Follow [the workshop tasks](WORKSHOP_TASKS.md) in order. They start with a factual baseline, build
-the portable policy in visible layers, configure one host, and use the result to change Karma API.
+Follow [the workshop tasks](WORKSHOP_TASKS.md) in order and copy prompts from
+[the prompt pack](WORKSHOP_PROMPTS.md) one at a time. They start with a factual baseline, build the
+portable policy in visible layers, configure one host, and use the result to change Karma API.
 
 The root `AGENTS.md` is the only portable policy entry point. Guidance, rules, roles, skills, and
 adapters are routed from that file. Do not create a second `AGENTS.md` under `harness/`.
 
 ## Current scope
 
-The canonical router, focused guidance, transversal rule, role contracts, and managed reusable
-review skill are present. The complete OpenCode adapter is the reference. Codex and Pi adapters
-are follow-on exercises that use the same portable inputs without pretending that their host
-mechanisms are identical.
+The canonical router, focused guidance, transversal rules, role contracts, and managed reusable
+review skill are present. `anti-slop.md` is deliberately not routed at first. Attendees activate it,
+restart their agent, and compare the same response before and after the route exists. The complete
+OpenCode adapter is the reference. Codex and Pi adapters are follow-on exercises that use the same
+portable inputs without pretending that their host mechanisms are identical.
