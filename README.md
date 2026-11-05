@@ -7,15 +7,14 @@ Karma API facts, application code, or a claim that all coding-agent hosts behave
 ## Workshop outcome
 
 Each attendee configures this harness for one chosen host, then uses it to make and verify a small
-Karma API change. The portable kernel stays canonical. Host adapters translate it for OpenCode,
-Codex, or Pi.
+Karma API change. The portable kernel stays canonical. Host adapters translate it for OpenCode or Pi.
 
 ```text
 portable kernel
         ↓
 thin host adapter
         ↓
-OpenCode | Codex | Pi
+OpenCode | Pi
 ```
 
 ## Layout
@@ -89,5 +88,5 @@ Do not create a second `AGENTS.md` under `harness/`.
 The canonical router, focused guidance, transversal rules, role contracts, and managed reusable
 review skill are present. `anti-slop.md` is deliberately not routed at first. Attendees activate it,
 restart their agent, and compare the same response before and after the route exists. The complete
-OpenCode adapter is the reference. Codex and Pi adapters are follow-on exercises that use the same
-portable inputs without pretending that their host mechanisms are identical.
+OpenCode is the complete reference adapter. Pi is a manual follow-on mapping that uses the same
+portable inputs without pretending that the hosts have identical mechanisms.

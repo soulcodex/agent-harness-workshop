@@ -9,6 +9,7 @@ leaving target-project instructions and existing user configuration intact.
 | --- | --- | --- |
 | `~/.config/opencode/AGENTS.md` | Root `AGENTS.md` | Global portable router. |
 | `~/.agents/skills/` | `harness/skills/scopes/workshop/.organized/` | Managed reusable skills. |
+| Per-run `OPENCODE_CONFIG` | `.generated/opencode.jsonc` | Generated five-role OpenCode overlay. |
 
 OpenCode combines its global `AGENTS.md` with repository `AGENTS.md` files. The global router is
 portable policy. Target repositories remain the owner of business rules, commands, architecture,
@@ -31,7 +32,18 @@ The script builds the managed skill profile, then creates these symlinks:
 
 It is idempotent for those exact links. If either target already exists and does not resolve to the
 expected source, it stops before creating any link. It never merges, replaces, moves, or backs up
-global configuration.
+global configuration. It also generates `.generated/opencode.jsonc` inside this adapter.
+
+Start OpenCode for the workshop through the launcher:
+
+```bash
+bash harness/adapters/opencode/run.sh
+```
+
+The launcher regenerates the overlay and provides it through `OPENCODE_CONFIG`. OpenCode merges this
+custom layer for that process, so the overlay contains only host-owned role mode, permissions, and
+short role bridges. It does not include providers, credentials, MCP servers, target-project facts, or
+an attendee's unrelated OpenCode preferences.
 
 After activation, start OpenCode in a target project, then verify that the global router and the
 project `AGENTS.md` are both visible before changing code.
@@ -41,6 +53,6 @@ merge portable policy into an attendee's current OpenCode setup.
 
 ## What this adapter does not carry
 
-- Custom OpenCode agents, commands, plugins, or permission policy.
+- Custom OpenCode commands, plugins, provider setup, MCP servers, or general permission policy.
 - Target-project facts or deterministic commands.
-- A claim that Codex or Pi have an identical installation mechanism.
+- A claim that Pi has an identical installation mechanism or configured-subagent model.

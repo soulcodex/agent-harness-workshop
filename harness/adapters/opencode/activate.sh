@@ -38,6 +38,7 @@ link_source() {
 }
 
 "${repository_dir}/harness/skills/build-profile.sh"
+python3 "${adapter_dir}/generate_config.py"
 assert_target_is_available "${router_source}" "${router_target}"
 assert_target_is_available "${skills_source}" "${skills_target}"
 link_source "${router_source}" "${router_target}"

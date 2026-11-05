@@ -32,30 +32,17 @@ in every host.
 | Devstral 2 | `devstral-2512` | 123B model, 256K context. | Legacy open-weight option. Mistral deprecated it for new integrations. |
 | Devstral Small 2 | `devstral-small-2512` | Dense 24B model, 256K context. | Legacy open-weight option. Mistral deprecated it for new integrations. |
 
-### Codex app aliases used in this workshop author’s setup
-
-These are host aliases from the local Codex installation, not public API model
-identifiers. Use them only if your Codex host exposes them.
-
-| Role fit | Alias and effort |
-| --- | --- |
-| Architect | `gpt-5.6-sol` at `xhigh` |
-| Worker | `gpt-5.6-luna` at `high` |
-| Code auditor | `gpt-5.6-terra` at `high` |
-| Researcher | `gpt-5.6-luna` at `medium` |
-| Alternatives | `gpt-6-sol` at `medium` and `gpt-6.1-terra` at `xhigh`, when exposed by the host |
-
 ## Starting combinations
 
 Choose one item per role. Do not treat the list as a required five-model swarm.
 
 | Role | Start with | Other verified options |
 | --- | --- | --- |
-| Architect | Kimi K3 or Qwen3.8-Max | GLM-5.3, Claude Sonnet 5, Claude Opus 5, `gpt-5.6-sol` at `xhigh` |
-| Worker | Qwen3-Coder-Next or DeepSeek-V4.1-Flash at `low` | Claude Haiku 4.5, `gpt-5.6-luna` at `high`, `gpt-5.6-terra` at `medium` |
-| Code auditor | `gpt-5.6-terra` at `high` | Claude Sonnet 5, Qwen3-Coder-Next, `gpt-6-sol` at `medium`, `gpt-5.6-luna` at `medium` |
-| Security auditor | `gpt-5.6-terra` at `high` | Claude Sonnet 5, Qwen3-Coder-Next |
-| Researcher | DeepSeek-V4.1-Flash or Gemini 3.8 Flash | `gpt-5.6-luna` at `medium`, Claude Haiku 4.5 |
+| Architect | Kimi K3 or Qwen3.8-Max | GLM-5.3, Claude Sonnet 5, Claude Opus 5 |
+| Worker | Qwen3-Coder-Next or DeepSeek-V4.1-Flash at `low` | Claude Haiku 4.5 |
+| Code auditor | Claude Sonnet 5 or Qwen3-Coder-Next | DeepSeek-V4.1-Flash at `high` |
+| Security auditor | Claude Sonnet 5 or Qwen3-Coder-Next | DeepSeek-V4.1-Flash at `high` |
+| Researcher | DeepSeek-V4.1-Flash or Gemini 3.8 Flash | Claude Haiku 4.5 |
 
 Devstral 2 and Devstral Small 2 remain useful only when an attendee already has a
 working local route. They are not defaults for a new setup. A researcher still

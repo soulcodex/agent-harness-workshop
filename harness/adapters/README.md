@@ -12,7 +12,7 @@ a second source of portable policy.
 
 ## Output
 
-The host-specific files, links, or installation steps required by OpenCode, Codex, or Pi.
+The host-specific files, links, or installation steps required by OpenCode or Pi.
 
 ## Adapter contract
 
@@ -25,7 +25,8 @@ The host-specific files, links, or installation steps required by OpenCode, Code
 
 ## Workshop scope
 
-`opencode/` is the complete reference adapter used in the workshop. Codex and Pi use the same
-portable inputs, but their adapters are follow-on exercises. A future host-config generator may
-live here only after the manual adapter has revealed a repeated, verifiable transformation worth
-automating.
+`opencode/` is the complete reference adapter used in the workshop. It generates a per-run
+`opencode.jsonc` role overlay from host-specific adapter code, then passes it through
+`OPENCODE_CONFIG`. It never writes or merges an attendee's global config. Pi uses the same portable
+inputs through a manual follow-on mapping. Automate Pi only after that mapping proves a repeated,
+verifiable transformation worth owning.

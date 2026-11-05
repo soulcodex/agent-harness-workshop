@@ -1,6 +1,6 @@
 # Workshop prompts
 
-Copy one prompt at a time. Replace bracketed host names only when needed.
+Copy one prompt at a time. Each check states the evidence needed before moving on.
 
 ## 0. Baseline
 
@@ -13,13 +13,13 @@ and missing evidence. Separate facts from assumptions. Do not propose architectu
 
 ## 1. Root router
 
-**Check:** portable policy is separate from Karma API facts. Do not route anti-slop yet.
+**Check:** portable policy is separate from Karma API facts. Anti-slop is not routed yet.
 
 ```text
-Inspect this harness. Make the root AGENTS.md the canonical portable router for its existing
-guidance, rules, roles, skills, and adapters. Respect target-repository AGENTS.md files for local
-constraints, but require evidence before using their factual claims in a decision. Keep repository
-facts outside this harness. Do not route anti-slop.md yet. Show changed paths and verification.
+Inspect this harness root AGENTS.md. Confirm it is the only portable router for its existing
+guidance, rules, roles, skills, and adapters. Confirm target-repository AGENTS.md files provide
+local constraints while factual claims still need evidence. Keep repository facts outside this
+harness. Do not route anti-slop.md. Report paths and any gap only.
 ```
 
 ## 2. Evidence before action
@@ -28,7 +28,8 @@ facts outside this harness. Do not route anti-slop.md yet. Show changed paths an
 
 ```text
 Read the applicable repository instructions and evidence guidance. Do not edit files. What is the
-smallest verified next step for the Karma API? State evidence and a stop condition.
+smallest verified next step for the Karma API? State the business invariant, evidence, affected
+paths, commands, and a stop condition.
 ```
 
 ## 3. Anti-slop control run
@@ -60,7 +61,40 @@ Without editing files, write a handoff for the current Karma API baseline: what 
 why, and how to validate it.
 ```
 
-## 6. Business tests
+## 6. Generate OpenCode roles
+
+**Check:** the generated overlay names five workshop agents and does not contain credentials,
+provider setup, MCP servers, or project facts.
+
+```text
+Inspect harness/adapters/opencode/generate_config.py and harness/roles/README.md. Generate the
+OpenCode overlay. Verify it maps workshop-architect, workshop-researcher, workshop-worker,
+workshop-auditor, and workshop-security-auditor to the portable role contract. Do not edit an
+existing global opencode.jsonc. Return the generated path and the validation command.
+```
+
+## 7. Build the review skill
+
+**Check:** the generated skill resolves to its checked-in source and Git does not track it.
+
+```text
+Build the managed review-change skill with harness/skills/build-profile.sh. Verify the generated
+SKILL.md resolves to the checked-in source. Do not upgrade or add skills.
+```
+
+## 8. Activate the OpenCode reference adapter
+
+**Check:** only the portable router and managed skills become global symlinks. The role overlay is
+loaded only by the workshop launcher.
+
+```text
+Inspect the OpenCode adapter before activation. Run its activation only if both target paths are
+available. Then start OpenCode through harness/adapters/opencode/run.sh so OPENCODE_CONFIG loads the
+generated role overlay for this process. Do not overwrite, merge, or symlink a global opencode.jsonc.
+Return the links, generated path, and fresh-session check.
+```
+
+## 9. Business tests
 
 **Check:** each test proves a Karma invariant rather than a coverage target.
 
@@ -69,7 +103,7 @@ Inspect the Karma API and its instructions. Add focused tests for the daily +5 a
 not change production code. State the behavior each test proves.
 ```
 
-## 7. Domain change
+## 10. Domain change
 
 **Check:** the HTTP edge is thinner and the domain owns the decision.
 
@@ -78,7 +112,7 @@ Implement the smallest change that satisfies the Karma tests. Use typed inputs w
 real ambiguity. Keep policy out of the HTTP handler. Run the narrowest relevant checks.
 ```
 
-## 8. Independent review
+## 11. Independent review
 
 **Check:** findings cite the diff or check output. Do not accept speculative defects.
 
@@ -87,12 +121,13 @@ Review the current Karma diff from a fresh, read-only context. Check requested b
 and credible regressions. Return only evidence-backed findings or an approval.
 ```
 
-## 9. Host activation
+## 12. Map the portable layer to Pi
 
-**Check:** the host receives the root router without overwriting existing user configuration.
+**Check:** the mapping names Pi's agent-directory path, reload step, and the capability it cannot
+claim to match from OpenCode.
 
 ```text
-For [OpenCode, Codex, or Pi], inspect the supported configuration seam for loading this harness
-router. Propose the smallest safe activation and a fresh-session check. Do not overwrite or merge
-existing global configuration.
+Inspect the Pi configuration seam for this harness. Propose a manual mapping for the portable
+AGENTS.md and managed skills under Pi's agent directory, then name the reload step. Do not claim
+that Pi has OpenCode-equivalent configured subagents. Do not overwrite existing Pi configuration.
 ```

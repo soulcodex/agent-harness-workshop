@@ -1,7 +1,7 @@
 # Portable work roles
 
-These roles describe responsibilities, not host-specific agent configuration. OpenCode uses the
-identifiers below. Other hosts may map the same responsibilities to named agents, fresh sessions,
+These roles describe responsibilities, not host-specific agent configuration. The OpenCode adapter
+maps them to `workshop-*` agent identifiers. Pi may map the same responsibilities to fresh sessions
 or carefully bounded prompts.
 
 | Role | Expected behavior | Boundary | Handoff |

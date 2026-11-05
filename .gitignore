@@ -1,3 +1,5 @@
 .DS_Store
+__pycache__/
 .harness-fixtures/
 harness/skills/scopes/workshop/.organized/
+harness/adapters/opencode/.generated/
