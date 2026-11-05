@@ -76,8 +76,8 @@ inside `harness/adapters/opencode/.generated/`.
 
 Run prompt 7 to build the managed `review-change` skill with `skill-organizer`.
 
-**Accept when:** `harness/skills/scopes/workshop/.organized/review-change/SKILL.md` resolves to the
-checked-in source and Git does not track the generated tree. Do not upgrade skills during the workshop.
+**Accept when:** `harness/skills/.organized/review-change/SKILL.md` resolves to the checked-in source
+and Git does not track the generated tree. Do not upgrade skills during the workshop.
 
 ## 6. Activate the OpenCode reference adapter
 

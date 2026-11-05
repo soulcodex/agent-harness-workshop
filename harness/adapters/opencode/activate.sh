@@ -4,7 +4,7 @@ set -euo pipefail
 adapter_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 repository_dir="$(cd "${adapter_dir}/../../.." && pwd)"
 router_source="${repository_dir}/AGENTS.md"
-skills_source="${repository_dir}/harness/skills/scopes/workshop/.organized"
+skills_source="${repository_dir}/harness/skills/.organized"
 config_home="${XDG_CONFIG_HOME:-${HOME}/.config}"
 router_target="${config_home}/opencode/AGENTS.md"
 skills_target="${HOME}/.agents/skills"

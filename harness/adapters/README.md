@@ -8,7 +8,7 @@ a second source of portable policy.
 - Root `AGENTS.md`
 - Relevant files under `harness/guidance/`
 - `harness/skills/manifest.yaml`
-- `harness/skills/scopes/workshop/.organized/` after synchronization
+- `harness/skills/.organized/` after synchronization
 
 ## Output
 

@@ -8,7 +8,7 @@ leaving target-project instructions and existing user configuration intact.
 | OpenCode location | Portable source | Purpose |
 | --- | --- | --- |
 | `~/.config/opencode/AGENTS.md` | Root `AGENTS.md` | Global portable router. |
-| `~/.agents/skills/` | `harness/skills/scopes/workshop/.organized/` | Managed reusable skills. |
+| `~/.agents/skills/` | `harness/skills/.organized/` | Managed reusable skills. |
 | Per-run `OPENCODE_CONFIG` | `.generated/opencode.jsonc` | Generated five-role OpenCode overlay. |
 
 `harness/roles/*.md` owns the prompt and description for each portable role. This adapter's
@@ -42,7 +42,7 @@ The script builds the managed skill profile, then creates these symlinks:
 
 ```text
 ~/.config/opencode/AGENTS.md -> <harness>/AGENTS.md
-~/.agents/skills -> <harness>/harness/skills/scopes/workshop/.organized
+~/.agents/skills -> <harness>/harness/skills/.organized
 ```
 
 It is idempotent for those exact links. If either target already exists and does not resolve to the

@@ -42,20 +42,17 @@ OpenCode | Pi
     │   └── transversal.md
     └── skills/
         ├── manifest.yaml
-        └── scopes/
-            └── workshop/
-                ├── .skill-organizer.yml
-                └── skills/
-                    └── review-change/
-                        └── SKILL.md
+        └── source/
+            └── review-change/
+                └── SKILL.md
 ```
 
 ## Managed skills
 
-This workshop uses [skill-organizer](https://github.com/sergiocarracedo/skill-organizer) to keep
-the reusable skill in a checked-in source scope and synchronize it to a local runtime tree. The
-workshop profile is intentionally small. It demonstrates the mechanism without copying a personal
-skill catalogue.
+This workshop uses [skill-organizer](https://github.com/sergiocarracedo/skill-organizer) to keep the
+reusable skill under `harness/skills/source/` and synchronize it to a local runtime tree. The workshop
+profile is intentionally small. It demonstrates the mechanism without copying a personal skill
+catalogue.
 
 The workshop setup provides `skill-organizer` 1.4.1. From this repository, build the local runtime
 tree with:

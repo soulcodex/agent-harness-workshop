@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-scope_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")/scopes/workshop" && pwd)"
-source_dir="${scope_dir}/skills"
-target_dir="${scope_dir}/.organized"
+skills_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source_dir="${skills_dir}/source"
+target_dir="${skills_dir}/.organized"
 runtime_config="$(mktemp)"
 
 cleanup() {
