@@ -27,7 +27,6 @@ MODE_BY_AGENT_TYPE: dict[PortableAgentType, AgentMode] = {
     "agent": "primary",
     "subagent": "subagent",
 }
-PORTABLE_AGENT_TYPES: tuple[PortableAgentType, ...] = ("agent", "subagent")
 
 
 class ConfigurationError(ValueError):
@@ -150,7 +149,11 @@ def required_strings(
 def required_portable_agent_type(
     document: Mapping[object, object], key: str, location: str
 ) -> PortableAgentType:
-    return required_choice(document, key, location, PORTABLE_AGENT_TYPES)
+    value = required_string(document, key, location)
+    if value not in MODE_BY_AGENT_TYPE:
+        allowed = ", ".join(MODE_BY_AGENT_TYPE)
+        raise ConfigurationError(f"{location}.{key} must be one of: {allowed}.")
+    return cast(PortableAgentType, value)
 
 
 def required_permission_rule(
@@ -198,7 +201,7 @@ def parse_role(path: Path) -> RolePrompt:
         raise ConfigurationError(
             f"{path} must include a prompt after its front matter."
         )
-    agent_type = required_portable_agent_type(
+    agent_type: PortableAgentType = required_portable_agent_type(
         metadata, "agent_type", f"{path} front matter"
     )
     return RolePrompt(
