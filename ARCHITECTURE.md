@@ -25,12 +25,12 @@ Do not copy portable policy into a target project or an OpenCode-owned configura
 `harness/adapters/opencode/activate.sh` creates only these symlinks after every target passes its
 availability check:
 
-| OpenCode target                | Portable source                    |
-| ------------------------------ | ---------------------------------- |
-| `~/.config/opencode/AGENTS.md` | `harness/router/AGENTS.md`         |
-| `~/.config/opencode/guidance`  | `harness/guidance`                 |
-| `~/.config/opencode/rules`     | `harness/rules`                    |
-| `~/.config/opencode/skills`    | `harness/skills/.organized`        |
+| OpenCode target                         | Portable source                    |
+| --------------------------------------- | ---------------------------------- |
+| `$XDG_CONFIG_HOME/opencode/AGENTS.md`   | `harness/router/AGENTS.md`         |
+| `$XDG_CONFIG_HOME/opencode/guidance`    | `harness/guidance`                 |
+| `$XDG_CONFIG_HOME/opencode/rules`       | `harness/rules`                    |
+| `$XDG_CONFIG_HOME/opencode/skills`      | `harness/skills/.organized`        |
 
 The generated `opencode.jsonc` remains under the adapter directory. It is not activated by this
 workshop because OpenCode does not discover arbitrary launcher scripts. Activation never merges,

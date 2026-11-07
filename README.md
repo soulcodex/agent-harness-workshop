@@ -6,8 +6,8 @@ Karma API facts, application code, or a claim that all coding-agent hosts behave
 
 ## Workshop outcome
 
-Each attendee evolves the portable router for OpenCode, then uses the activated guidance to make and
-verify one small Karma API change. The portable kernel stays canonical. The OpenCode adapter
+Each attendee evolves the portable router for OpenCode, then uses the activated guidance to build
+and verify the supplied Karma API contract. The portable kernel stays canonical. The OpenCode adapter
 translates it for its host.
 
 ```text
@@ -68,9 +68,9 @@ harness/skills/build-profile.sh
 
 The builder resolves the portable relative paths required by the checked-in organizer configuration,
 removes its temporary config, and verifies the generated skill and manifest. The generated
-`.organized/` directory is ignored by Git. The OpenCode adapter links it into
-`~/.config/opencode/skills` during an explicit, reversible activation after inspecting existing
-targets.
+`.organized/` directory is ignored by Git. The OpenCode adapter links it into the selected
+`$XDG_CONFIG_HOME/opencode/skills` path during an explicit, reversible activation after inspecting
+existing targets.
 
 ## Setup and generated artifacts
 
@@ -79,18 +79,36 @@ Run `./setup.sh` to inspect attendee prerequisites without changing the host. Ru
 `./setup.sh --verify` builds the disposable skill profile and OpenCode role overlay.
 
 The portable runtime is installed only by `harness/adapters/opencode/activate.sh`. It links the
-installable router, guidance, rules, and skills into `~/.config/opencode/`.
+installable router, guidance, rules, and skills into `$XDG_CONFIG_HOME/opencode/`. For the workshop,
+use the ignored `.workshop-opencode-config/` directory rather than your usual OpenCode configuration.
 
 Do not test installation against an existing OpenCode configuration while developing this repository.
 Run `bash harness/adapters/opencode/test-in-docker.sh` instead. It uses a container-only home
 directory and never mounts a host configuration.
 
+## Attendee preflight
+
+From this repository, inspect prerequisites with `./setup.sh`. Run `./setup.sh --install` only when
+it reports a missing attendee-owned tool, then run `./setup.sh --verify`.
+
+Clone the companion [Karma API](https://github.com/soulcodex/karma-list-api) repository. Activate the
+harness in an isolated configuration and start OpenCode in standalone mode from the same terminal:
+
+```bash
+export XDG_CONFIG_HOME="$PWD/.workshop-opencode-config"
+harness/adapters/opencode/activate.sh
+opencode --standalone /path/to/karma-list-api
+```
+
+This creates no links in an existing OpenCode configuration and avoids an existing background server.
+Confirm that a fresh OpenCode session can read the installed router before beginning the tasks.
+
 ## Attendee path
 
 Follow [the workshop tasks](WORKSHOP_TASKS.md) in order and copy prompts from
 [the prompt pack](WORKSHOP_PROMPTS.md) one at a time. They start with a factual baseline, add one
-lazy router row at a time, compare fresh-session output, and use the activated guidance to change
-Karma API.
+lazy router row at a time, compare fresh-session output, and use the activated guidance to build the
+[Karma API contract](https://github.com/soulcodex/karma-list-api/blob/main/docs/context/karma/INDEX.md).
 
 [Role-model recipes](MODEL_ROLE_RECIPES.md) gives fact-checked starting points for a small role
 loop. Confirm availability, access, and effort settings in the chosen host before using one.

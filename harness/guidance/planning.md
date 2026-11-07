@@ -4,8 +4,9 @@ Use this guidance before a non-trivial implementation change. Inspect before pla
 editing while scope, ownership, or intended behavior remain uncertain.
 
 Planning turns verified evidence into an executable, reviewable contract. It does not invent
-architecture. Load transversal rules when the change reaches a business boundary, API, persistence,
-cross-cutting concern, or new dependency.
+architecture. Identify transversal concerns when a change reaches a business boundary, API,
+persistence, cross-cutting concern, or new dependency. Read their detailed rules only when the
+router explicitly activates them.
 
 ## Required shape
 
