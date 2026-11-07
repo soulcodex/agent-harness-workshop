@@ -38,6 +38,7 @@ repository_directory="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 uv_binary="$(command -v uv || true)"
 skill_organizer_binary="$(command -v skill-organizer || true)"
 opencode_binary="$(command -v opencode || true)"
+npm_binary="$(command -v npm || true)"
 
 install_uv() {
   local installer
@@ -89,6 +90,12 @@ report_prerequisites() {
       echo "Available: ${tool} ($(command -v "${tool}"))"
     fi
   done
+
+  if [[ -z "${npm_binary}" ]]; then
+    echo "Missing: npm (needed only to install skill-organizer)"
+  else
+    echo "Available: npm (${npm_binary})"
+  fi
 
   if [[ "${missing}" == true ]]; then
     echo "Run ./setup.sh --install for uv and skill-organizer. Install OpenCode separately."
