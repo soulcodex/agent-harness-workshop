@@ -32,10 +32,10 @@ Add this row, open a fresh session, then run prompt 2:
 
 | Source | Read when | What it governs |
 | --- | --- | --- |
-| `guidance/planning.md` | Planning a change. | Scope, acceptance, risks, and stop conditions. |
+| `guidance/planning.md` | Planning a change. | Contract, scope, acceptance, and stop conditions. |
 
-**Accept when:** the plan is specific enough to execute, excludes unrelated work, and labels any
-unknowns instead of inventing them.
+**Accept when:** the plan is specific enough to execute, identifies the affected contract and policy
+owner where relevant, excludes unrelated work, and labels unknowns instead of inventing them.
 
 ## 3. Add the anti-slop route
 
@@ -62,8 +62,9 @@ Add these rows before asking an agent to change the Karma API, then run prompt 5
 | `guidance/python.md` | Changing or reviewing Python. | Typed code and focused tests. |
 | `rules/transversal.md` | Cross-cutting changes. | Boundaries and deterministic checks. |
 
-**Accept when:** the proposed daily-budget slice has business tests, typed inputs where they clarify
-meaning, and a policy owner outside the HTTP edge.
+**Accept when:** the proposed daily-budget slice has typed boundaries where they clarify meaning,
+names validation and invariant-enforcement owners, includes business tests that detect rule drift,
+and keeps policy outside the HTTP edge.
 
 ## 5. Implement the Karma rule
 

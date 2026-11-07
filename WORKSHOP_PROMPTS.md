@@ -34,15 +34,16 @@ paths, commands, and a stop condition.
 **Router row to add first:**
 
 ```text
-| `guidance/planning.md` | Planning a change. | Scope, acceptance, risks, and stop conditions. |
+| `guidance/planning.md` | Planning a change. | Contract, scope, acceptance, and stop conditions. |
 ```
 
 **Check:** the plan is executable and stays inside the daily-budget goal.
 
 ```text
 Read the applicable repository instructions and routed guidance. Do not edit files. Plan the daily
-Karma budget change. Include the verified starting point, goal and invariant, scope and exclusions,
-ordered work, acceptance evidence, credible risks, and a stop condition. Mark unknowns as unknowns.
+Karma budget change. Include the verified starting point, business invariant, affected consumers,
+contract, scope and exclusions, ordered work, acceptance evidence, credible risks, and a stop
+condition. Mark unknowns as unknowns.
 ```
 
 ## 3. Anti-slop control run
@@ -82,8 +83,9 @@ change next, why, and how to validate it.
 
 ```text
 Inspect the Karma API and routed guidance. Do not edit files. Propose the smallest daily-budget
-slice. State the policy owner, typed inputs that clarify the operation, business tests, affected
-paths, deterministic checks, exclusions, and a stop condition.
+slice. State the policy owner, typed inputs and outputs that clarify the operation, validation and
+invariant-enforcement boundaries, business tests that detect rule drift, deterministic checks,
+affected paths, exclusions, and a stop condition.
 ```
 
 ## 6. Business tests
