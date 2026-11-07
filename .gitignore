@@ -3,6 +3,6 @@ __pycache__/
 .harness-fixtures/
 .ruff_cache/
 .rumdl_cache/
-.workshop-opencode-config/
+.harness-config/
 harness/skills/.organized/
 harness/adapters/opencode/.generated/

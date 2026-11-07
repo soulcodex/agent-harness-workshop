@@ -18,7 +18,7 @@ the generated workshop artifacts:
 Activate the harness in an isolated OpenCode configuration and open Karma API from the same terminal:
 
 ```bash
-export XDG_CONFIG_HOME="$PWD/.workshop-opencode-config"
+export XDG_CONFIG_HOME="$PWD/.harness-config"
 harness/adapters/opencode/activate.sh
 opencode --standalone /path/to/karma-list-api
 ```

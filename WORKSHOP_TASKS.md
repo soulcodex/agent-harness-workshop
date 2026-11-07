@@ -8,8 +8,8 @@ this harness. The router starts deliberately minimal, so every added row has an 
 **Problem:** changing a portable router has no observable effect until a fresh agent session loads it.
 
 From the harness repository, run `./setup.sh`, resolve any missing attendee-owned prerequisites, then
-run `./setup.sh --verify`. Set `XDG_CONFIG_HOME` to the ignored
-`.workshop-opencode-config/` directory and activate the adapter. Start OpenCode from that same
+run `./setup.sh --verify`. Set `XDG_CONFIG_HOME` to the ignored `.harness-config/` directory and
+activate the adapter. Start OpenCode from that same
 terminal with `--standalone` so it uses the isolated configuration instead of an existing background
 server.
 
