@@ -51,3 +51,5 @@ link_source "${router_source}" "${router_target}"
 link_source "${guidance_source}" "${guidance_target}"
 link_source "${rules_source}" "${rules_target}"
 link_source "${skills_source}" "${skills_target}"
+
+echo "OpenCode global harness activated ✅ (${config_directory})"

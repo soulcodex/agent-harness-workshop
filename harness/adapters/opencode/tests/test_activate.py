@@ -62,7 +62,13 @@ class ActivateAdapterTest(unittest.TestCase):
                 text=True,
             )
             self.assertIn("Linked:", first_activation.stdout)
+            self.assertIn(
+                "OpenCode global harness activated ✅", first_activation.stdout
+            )
             self.assertEqual(second_activation.stdout.count("Already linked:"), 4)
+            self.assertIn(
+                "OpenCode global harness activated ✅", second_activation.stdout
+            )
 
     def test_refuses_an_occupied_target_before_linking_any_source(self) -> None:
         with tempfile.TemporaryDirectory() as temporary_directory:
