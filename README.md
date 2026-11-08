@@ -15,6 +15,9 @@ the generated workshop artifacts:
 ./setup.sh --verify
 ```
 
+`--install` places `uv` and `skill-organizer` under `~/.local`. Ensure
+`~/.local/bin` is on your shell `PATH` before activation.
+
 Activate the harness in an isolated OpenCode configuration and open Karma API from the same terminal:
 
 ```bash

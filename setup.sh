@@ -35,6 +35,8 @@ for argument in "$@"; do
 done
 
 repository_directory="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+user_install_directory="${HOME}/.local"
+export PATH="${user_install_directory}/bin:${PATH}"
 uv_binary="$(command -v uv || true)"
 skill_organizer_binary="$(command -v skill-organizer || true)"
 opencode_binary="$(command -v opencode || true)"
@@ -71,7 +73,8 @@ install_skill_organizer() {
     exit 1
   fi
 
-  npm install --global "skill-organizer@${skill_organizer_version}"
+  npm install --global --prefix "${user_install_directory}" \
+    "skill-organizer@${skill_organizer_version}"
   skill_organizer_binary="$(command -v skill-organizer || true)"
   if [[ -z "${skill_organizer_binary}" ]]; then
     echo "skill-organizer was not available after installation." >&2
@@ -104,7 +107,6 @@ report_prerequisites() {
 
 if [[ "${install_missing}" == true ]]; then
   install_uv
-  export PATH="${HOME}/.local/bin:${PATH}"
   install_skill_organizer
 fi
 
