@@ -1,6 +1,6 @@
 # Role-model recipes
 
-Fact-checked on 2026-11-05. These are starting points for a small, bounded role
+Fact-checked on 2026-11-10. These are starting points for a small, bounded role
 loop. They are not benchmark results or a promise that a given model is available
 in every host.
 
@@ -48,8 +48,29 @@ Devstral 2 and Devstral Small 2 remain useful only when an attendee already has 
 working local route. They are not defaults for a new setup. A researcher still
 needs an authoritative-source tool even when its model is capable.
 
+## OpenCode Go workshop recipe
+
+Use this Go-only loop when cost and duration matter. It deliberately uses one
+planning pass, one implementation pass, and targeted review instead of invoking
+every role for every task.
+
+| Role | OpenCode model ID | Effort | Use |
+| --- | --- | --- | --- |
+| Architect | `opencode-go/glm-5.3` | `high` | Initial plan and material replanning only. |
+| Researcher | `opencode-go/glm-5.3-flash` | `low` | An evidence gap that needs external research. |
+| Worker | `opencode-go/deepseek-v4.1-flash` | `high` | Default implementation role. |
+| Code auditor | `opencode-go/gpt-6-luna` | `medium` | Independent review of the diff and verification evidence. |
+| Security auditor | `opencode-go/qwen3.8-max` | `xhigh` | One bounded review of the `POST /karma` trust boundary. |
+
+Run the normal path as architect, worker, code auditor, then human decision.
+Call the security auditor only for the write endpoint or another new trust
+boundary. OpenCode Go availability, privacy restrictions, and effort choices can
+change. Confirm the shown IDs and supported effort in `/models` on the workshop
+day.
+
 ## Evidence
 
+- [OpenCode Go models, limits, and privacy restrictions](https://opencode.ai/docs/console/go/)
 - [Z.ai, GLM-5.3](https://z.ai/blog/glm-5.3)
 - [Moonshot AI, Kimi K3](https://forum.moonshot.ai/t/kimi-k3-is-here-our-most-capable-model/480)
 - [Moonshot AI, Kimi K3 active parameters](https://forum.moonshot.ai/t/okay-moonshot-are-we-still-coming-with-you/592)
