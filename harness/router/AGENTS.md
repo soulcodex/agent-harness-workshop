@@ -14,8 +14,9 @@ configuration, runtime state, or an authoritative source.
 
 ## Lazy context router
 
-This router intentionally starts without lazy routes. Add one row only when the workshop task calls
-for it, then begin a fresh session before comparing the next output.
+The table below is the only lazy-loading contract. Add the route prescribed by the active workshop
+task. Do not read unrouted guidance or rules. Start a fresh session after changing the table before
+evaluating the result.
 
 | Source | Read when | What it governs |
 | --- | --- | --- |
