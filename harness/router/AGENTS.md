@@ -17,6 +17,9 @@ configuration, runtime state, or an authoritative source.
 This router intentionally starts without lazy routes. Add one row only when the workshop task calls
 for it, then begin a fresh session before comparing the next output.
 
+| Source | Read when | What it governs |
+| --- | --- | --- |
+
 ## Project boundary
 
 Respect the target repository's local operating constraints and use its commands and verification
