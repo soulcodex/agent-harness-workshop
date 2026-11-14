@@ -1,7 +1,7 @@
 profile: workshop
 tool:
   name: skill-organizer
-  version: 1.4.1
+  version: 1.5.1
   purpose: Synchronize a checked-in source scope into a local runtime skill tree.
 scope:
   source: source

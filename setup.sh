@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-skill_organizer_version="1.4.1"
+skill_organizer_version="1.5.1"
 install_missing=false
 verify=false
 
@@ -42,6 +42,12 @@ skill_organizer_binary="$(command -v skill-organizer || true)"
 opencode_binary="$(command -v opencode || true)"
 npm_binary="$(command -v npm || true)"
 
+has_required_skill_organizer() {
+  local binary="$1"
+
+  [[ -n "${binary}" ]] && "${binary}" --version | grep -Fxq "${skill_organizer_version}"
+}
+
 install_uv() {
   local installer
 
@@ -65,7 +71,7 @@ install_uv() {
 }
 
 install_skill_organizer() {
-  if [[ -n "${skill_organizer_binary}" ]]; then
+  if has_required_skill_organizer "${skill_organizer_binary}"; then
     return
   fi
   if ! command -v npm >/dev/null 2>&1; then
@@ -73,7 +79,7 @@ install_skill_organizer() {
     exit 1
   fi
 
-  npm install --global --prefix "${user_install_directory}" \
+  npm install --global --prefix "${user_install_directory}" --allow-scripts=skill-organizer \
     "skill-organizer@${skill_organizer_version}"
   skill_organizer_binary="$(command -v skill-organizer || true)"
   if [[ -z "${skill_organizer_binary}" ]]; then
@@ -124,7 +130,7 @@ if [[ -z "${uv_binary}" || -z "${skill_organizer_binary}" || -z "${opencode_bina
   exit 1
 fi
 
-if ! "${skill_organizer_binary}" --version | grep -Fq "${skill_organizer_version}"; then
+if ! has_required_skill_organizer "${skill_organizer_binary}"; then
   echo "skill-organizer ${skill_organizer_version} is required." >&2
   exit 1
 fi

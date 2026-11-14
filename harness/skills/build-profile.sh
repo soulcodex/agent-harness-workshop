@@ -12,7 +12,7 @@ cleanup() {
 trap cleanup EXIT
 
 if ! command -v skill-organizer >/dev/null 2>&1; then
-  echo "Error: skill-organizer 1.4.1 is required." >&2
+  echo "Error: skill-organizer 1.5.1 is required." >&2
   exit 1
 fi
 
